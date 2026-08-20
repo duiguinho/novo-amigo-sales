@@ -1,0 +1,65 @@
+.nav{
+    width: 100%;
+    height: 70px;
+    background-color: #721111;
+    padding-left: 10px;
+}
+
+.btn-hamburger {
+  display: inline-block;
+  padding: 0;
+  width: fit-content;
+  height: fit-content;
+  font-size: 30px;
+  line-height: 1;
+}
+
+a{
+    color: white;
+    font-size: 2.5rem;
+    text-decoration: none;
+}
+
+.perfil-login{
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(157, 157, 157);
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+img{
+    margin-top: 5px;
+    width: 45px;
+    height: 45px;
+}
+
+#offcanvasExample{
+    background-color: #721111;
+}
+
+ul{
+    width: 100%;
+    
+    height: 50px;
+    padding: 7px;
+    transition: 0.5s;
+
+    display: flex;
+    align-items: center;
+}
+
+ul:hover{
+    background-color: #430a0a;
+}
+
+.rotas{
+    font-size: 1rem;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
