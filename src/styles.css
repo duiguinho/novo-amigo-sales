@@ -1,4 +1,11 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #faf8f4;
+}
+
+:root{
+    --primary-color: #721111;
+    --secondary-color: #430a0a;
+    --tertiary-color: #9198a0;
 }

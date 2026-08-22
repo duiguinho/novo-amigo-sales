@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-pagina-inicial',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './pagina-inicial.html',
   styleUrl: './pagina-inicial.css',
 })
