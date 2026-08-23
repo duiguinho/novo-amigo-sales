@@ -3,14 +3,6 @@ main{
     flex-direction: column;
 }
 
-.first-floor{
-    display: flex;
-    width: 100%;
-    height: 65vh;
-    justify-content: center;
-    padding-top: 50px;
-    border: 1px solid black;
-}
 
 .carrossel{
     width: 85%;
@@ -33,6 +25,8 @@ main{
     padding-left: 30px;
 }
 
+/* ---------------------------------------------------------------------- */
+
 h5{
     font-size: 1.2rem;
     color: white;
@@ -51,6 +45,45 @@ h1{
     font-size: 2.1rem;
 }
 
+p{
+    font-size: 1.4rem;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#p-tipo-1{
+    font-size: 1rem;
+    font-family: arial;
+    color: #b21414;
+    font-weight: bold;
+}
+#p-tipo-2{
+    font-size: 1rem;
+    font-family: arial;
+    color: #e5d400;
+    font-weight: bold;
+}
+#p-tipo-3{
+    font-size: 1rem;
+    font-family: arial;
+    color: #4199ff;
+    font-weight: bold;
+}
+
+.card-titulo{
+    font-family: arial;
+    font-size: 1.2rempx ;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 7px;
+}
+
+.p-conteudo{
+    font-family: arial;
+    font-size: 1.1rem ;
+    text-align: center;
+}
+
 #saiba-mais{
     border: none;
     background-color: var(--primary-color);
@@ -58,20 +91,42 @@ h1{
     width: 190px;
     color: white;
     font-family:'Times New Roman', Times, serif ;
-    transition: 0.5s;
+    transition: 0.3s;
 }
 
 #saiba-mais:hover{
-    background-color: var(--secondary-color);
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+/* ------------------------------------------------------------ */
+
+.first-floor{
+    display: flex;
+    width: 100%;
+    height: 65vh;
+    justify-content: center;
+    padding-top: 50px;
+    border: 1px solid black;
 }
 
 .second-floor{
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
+.third-floor{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+}
+
+/* ---------------------------------------------------------------- */
 
 .f-half{
     width: 100%;
@@ -82,17 +137,17 @@ h1{
 
 .s-half{
     width: 100%;
-    height: 50%;
+    height: 30%;
     display: flex;
     flex-direction: column;
-    border: 3px solid blue;
     align-items: center;
 }
 
+
+/* --------------------------------------------------------------- */
+
 .cards{
     width: 100%;
-    height: 100%;
-    border: 1px solid red;
     display: flex;
 }
 
@@ -118,27 +173,132 @@ h1{
     align-items: center;
 }
 
+/* ----------------------------------------------------- */
+
 .aviso-importante{
-    width: 350px;
-    height: 200px;
+    width: 370px;
+    height: 180px;
     border: 0.5px solid var(--tertiary-color);
-    border-radius: 10px;
-    box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.325);
+    border-radius: 18px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.325);
     background-color: white;
+    padding: 15px;   
+    padding-top: 15px;
 }
 .aviso-evento{
-    width: 350px;
-    height: 200px;
+    width: 370px;
+    height: 180px;
     border: 0.5px solid var(--tertiary-color);
-    border-radius: 10px;
-    box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.325);
+    border-radius: 18px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.325);
     background-color: white;
+    padding: 15px;
+    padding-top: 15px;
+
+
 }
 .aviso-frase{
-    width: 350px;
-    height: 200px;
+    width: 370px;
+    height: 180px;
     border: 0.5px solid var(--tertiary-color);
-    border-radius: 10px;
-    box-shadow: 3px 3px 13px rgba(0, 0, 0, 0.325);
+    border-radius: 18px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.325);
     background-color: white;
+    padding: 15px;
+    padding-top: 15px;
+
+}
+
+/* ----------------------------------------------------- */
+
+#card-tipo-1{
+    width: 110px;
+    height: 25px;
+    border-radius: 18px;
+    border: 2px solid #b21414;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #b2141437;
+}
+#card-tipo-2{
+    width: 110px;
+    height: 25px;
+    border-radius: 18px;
+    border: 2px solid #e5d400;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #e5d6003a;
+}
+#card-tipo-3{
+    width: 110px;
+    height: 25px;
+    border-radius: 18px;
+    border: 2px solid #4199ff;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #419aff2e;
+}
+
+/* --------------------------------------------------------------- */
+
+.metade-esquerda{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.metade-direita{
+    width: 50%;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 55px;
+}
+
+/* ----------------------------------------------------------------------- */
+
+#foto-sobre-1{
+    width: 260px;
+    height: 410px;
+    border-radius: 10px;
+    margin-top: 90px;
+    background-image: url(/images/condutor-sobe.jpeg);
+    background-size: cover;
+    background-position: center;
+    
+}
+#foto-sobre-2{
+    width: 260px;
+    height: 410px;
+    border-radius: 10px;
+    margin-left: 40px;
+    background-image: url(/images/etec-sobre-1.webp);
+    background-size: cover;
+    background-position: center;
+}
+
+.sombra-lateral{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: #3F5EFB;
+    background: radial-gradient(circle,rgba(63, 94, 251, 0) 85%, rgba(0, 0, 0, 0.15) 100%);    
+}
+
+/* --------------------------------------------------------------------------- */
+
+footer{
+    width: 100%;
+    height: 150px;
+    background-color: var(--secondary-color);
+    padding: 40px 8% 20px;
+
 }
