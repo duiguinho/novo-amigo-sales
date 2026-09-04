@@ -46,13 +46,16 @@ p{
     font-size: 1.4rem;
 }
 
+a{
+    width: 0;
+}
 
 .card-titulo{
     font-family: arial;
     font-size: 1.2rem ;
     color: black;
     font-weight: bold;
-    margin-top: 7px;
+    margin-top: 25px;
     line-height: 1.5;
 }
 
@@ -171,17 +174,16 @@ p{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-top: 75px;
 }
 
 .metade-direita{
     width: 50%;
     height: 100%;
-    padding: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: column;
-    padding-top: 75px;
-
 }
 
 /* ----------------------------------------------------------------------- */
@@ -218,17 +220,29 @@ p{
 
 .biblioteca-box{
     width: 50%;
-    height: 280px;
-    background-color: #3F5EFB;
+    height: 240px;
     border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.325);
+    background-image: url(/images/biblioteca-inicial.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+        background-color: #FFFFFF;
+
 }
 
 .cardapio-box{
     width: 40%;
-    height: 280px;
-    background-color: #fbe83f;
+    height: 240px;
     position: absolute;
     right: 0;
     margin-right: 30px;
     border-radius: 5px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.325);
+    background-color: #FFFFFF;
+    background-image: url(/images/cardapio-inicial.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
 }
