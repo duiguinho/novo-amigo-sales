@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+footer{
+    width: 100%;
+    height: 160px;
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rodape{
+    width: 100%;
+    height: 80%;
+    display: flex;
+}
+
+.p-half{
+    width: 50%;
+    height: 100%;
+}
+
+.s-half{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    padding: 30px;
+}
+
+.entre-title{
+    width: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.entre-contato{
+    padding: 5px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+}
+
+.instagram{
+    width: 43px;
+    height: 43px;
+    background-color: white;
+    border-radius: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    width: 29px;
+}
+
+p{
+    color: white;
+}
+
+hr{
+    width: 90%;
+    border: 1px solid white;
+}
+
