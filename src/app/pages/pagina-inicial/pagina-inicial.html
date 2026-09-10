@@ -20,37 +20,15 @@
                 <h1 id="avisos-h1">AVISOS</h1>
             <div class="cards">
                 
-                    <div class="aviso-card">
-                        <div class="titulo-h5">
-                        <h5 class="card-titulo">Reunião de pais e responsáveis</h5>
-                    </div>
-                    <hr>
-                        <p class="p-conteudo" >A reunião será realizada nunca</p>
-                    </div>
-                
-                    <div class="aviso-card">
-                        <div class="titulo-h5">
-                        <h5 class="card-titulo">Semana Paulo Freire</h5>
-                    </div>
-                    <hr>
-                        <p class="p-conteudo" >Participe da nossa semana das profissões e descubra seu futuro </p>
-                    </div>
-                
-                    <div class="aviso-card">
-                         <div class="titulo-h5">
-                        <h5 class="card-titulo">BOM DIA!!!</h5>
-                    </div>
-                    <hr>
-                        <p class="p-conteudo" >A reunião será realizada nunca</p>
-                    </div>
-                
-                    <div class="aviso-card">
-                        <div class="titulo-h5">
-                        <h5 class="card-titulo">BOM DIA!!!</h5>
-                    </div>
-                    <hr>
-                        <p class="p-conteudo" >A reunião será realizada nunca</p>
-                    </div>
+                @for (noticia of noticias; track $index) {
+
+            <app-aviso
+                [titulo]="noticia.titulo"
+                [descricao]="noticia.descricao">
+            </app-aviso>
+
+    }    
+
             </div>
         </div>
 
