@@ -20,7 +20,7 @@
                 <h1 id="avisos-h1">AVISOS</h1>
             <div class="cards">
                 
-                @for (noticia of noticias; track $index) {
+                @for (noticia of noticias; track noticia.id) {
 
             <app-aviso
                 [titulo]="noticia.titulo"
