@@ -1,1 +1,14 @@
-<p>cardapio works!</p>
+<main>
+    <h1>Dia da Semana</h1>
+    <div class="dias">
+        <button class="inicialDaSemana" *ngFor="let dia of dias" (click)="selecionarDia(dia.id)">
+            {{ dia.letra }}
+        </button>
+    </div>
+    <div class="conteudo">
+        <h3>Manhã:</h3>
+        <h3>{{ diaAtual?.manha }}</h3>
+        <h3>Tarde:</h3>
+        <h3>{{ diaAtual?.tarde }}</h3>
+    </div>
+</main>

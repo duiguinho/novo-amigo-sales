@@ -13,3 +13,9 @@ body {
     --secondary-color: #430a0a;
     --tertiary-color: #9198a0;
 }
+
+.cardapio-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
+    width: 600px;
+    height: 350px;
+    border-radius: 5px !important;
+}
