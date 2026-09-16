@@ -9,7 +9,7 @@
     border-radius: 5px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.325);
     background-color: white;
-    padding: 15px;   
+    padding: 30px;   
     padding-top: 15px;
     
 }
@@ -21,7 +21,7 @@
 
 .card-titulo{
     font-family: arial;
-    font-size: 1.2rem ;
+    font-size: 1.3rem ;
     color: black;
     font-weight: bold;
     margin-top: 25px;
@@ -29,6 +29,7 @@
 }
 
 .p-conteudo{
+    color: gray;
     font-family: arial;
     font-size: 1.2rem ;
 }

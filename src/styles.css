@@ -16,6 +16,6 @@ body {
 
 .cardapio-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
     width: 600px;
-    height: 350px;
+    height: 310px;
     border-radius: 5px !important;
 }

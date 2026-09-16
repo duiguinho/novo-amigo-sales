@@ -1,14 +1,15 @@
 <main>
-    <h1>Dia da Semana</h1>
+    <h1>Dia da Semana:</h1>
     <div class="dias">
-        <button class="inicialDaSemana" *ngFor="let dia of dias" (click)="selecionarDia(dia.id)">
+        <button class="inicialDaSemana" *ngFor="let dia of dias" (click)="selecionarDia(dia.id)" 
+        [style.background-color]="dia.id === diaAtual?.id ? 'white' : 'var(--tertiary-color)'">
             {{ dia.letra }}
         </button>
     </div>
     <div class="conteudo">
-        <h3>Manhã:</h3>
+        <h3 class="periodoh3">Manhã:</h3>
         <h3>{{ diaAtual?.manha }}</h3>
-        <h3>Tarde:</h3>
+        <h3 class="periodoh3">Tarde:</h3>
         <h3>{{ diaAtual?.tarde }}</h3>
     </div>
 </main>

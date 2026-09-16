@@ -1,0 +1,45 @@
+<main>
+    <h1>cadastrar cardápio</h1>
+
+    <label for="dia">Dia da Semana:</label>
+
+    <select id="dia" [(ngModel)]="novoDia" >
+        <option [ngValue]="1">Segunda-feira</option>
+        <option [ngValue]="2">Terça-feira</option>
+        <option [ngValue]="3">Quarta-feira</option>
+        <option [ngValue]="4">Quinta-feira</option>
+        <option [ngValue]="5">Sexta-feira</option>
+    </select>
+
+    <label for="manha">Manhã:</label>
+
+    <input id="manha" type="text" [(ngModel)]="novoManha" placeholder="Digite seu cardápio da manhã">
+    
+    <label for="tarde">Tarde:</label>
+
+    <input id="tarde" type="text" [(ngModel)]="novoTarde" placeholder="Digite seu cardápio da manhã">
+
+    <button (click)="adicionarCardapio()">
+        adicionar
+    </button>
+
+    <h2>cardápios cadastrados:</h2>
+
+    @for (cardapio of cardapios; track cardapio.id) {
+
+
+        <h3>{{ cardapio.nome }}</h3>
+
+        <p>
+            <strong>Manhã:</strong>
+            {{ cardapio.manha }}
+        </p>
+
+        <p>
+            <strong>Tarde:</strong>
+            {{ cardapio.tarde }}
+        </p>
+
+    }
+
+</main>

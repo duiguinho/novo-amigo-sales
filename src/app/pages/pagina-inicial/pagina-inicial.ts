@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { Aviso } from '../../components/aviso/aviso';
 import { MatDialog } from '@angular/material/dialog';
-import { Cardapio } from '../../components/cardapio/cardapio';
+import { CardapioComponent } from '../../components/cardapio/cardapio';
 
 @Component({
   selector: 'app-pagina-inicial',
-  imports: [RouterLink, Aviso, Cardapio],
+  imports: [RouterLink, Aviso, CardapioComponent],
   templateUrl: './pagina-inicial.html',
   styleUrl: './pagina-inicial.css',
 })
@@ -15,7 +15,7 @@ export class PaginaInicial {
   constructor(private dialog: MatDialog){}
 
   abrirCardapio() {
-  this.dialog.open(Cardapio, {
+  this.dialog.open(CardapioComponent, {
     panelClass: 'cardapio-dialog'
   });
 }
