@@ -36,7 +36,7 @@ export class GerenciarCardapio {
     let dia = this.dias.find(dia => dia.id === this.novoDia);
 
     let novoCardapio: Cardapio = {
-      id: this.cardapios.length + 1,
+      id: dia!.id,
       letra: dia!.letra,
       nome: dia!.nome,
       manha: this.novoManha,
@@ -45,20 +45,22 @@ export class GerenciarCardapio {
 
     this.cardapios.push(novoCardapio);
 
-  }
-
-  editarCardapio(id:number){
-
-    let cardapio = this.cardapios.find(cardapio => cardapio.id == id)
-
-    if (!cardapio){
-      return;
-    }
-
-    this.novoManha = cardapio.manha;
-    this.novoTarde = cardapio.tarde;
-    this.cardapioEditado = id;
+    this.cardapioService.adicionarCardapio(novoCardapio);
 
   }
+
+  // editarCardapio(id:number){
+
+  //   let cardapio = this.cardapios.find(cardapio => cardapio.id == id)
+
+  //   if (!cardapio){
+  //     return;
+  //   }
+
+  //   this.novoManha = cardapio.manha;
+  //   this.novoTarde = cardapio.tarde;
+  //   this.cardapioEditado = id;
+
+  // }
 
 }
