@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Cardapio } from '../../models/cardapio';
 import { FormsModule } from '@angular/forms';
+import { CardapioService } from '../../service/cardapio';
 
 @Component({
   selector: 'app-gerenciar-cardapio',
@@ -9,6 +10,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './gerenciar-cardapio.css',
 })
 export class GerenciarCardapio {
+
+  constructor(private cardapioService: CardapioService){
+    
+  }
 
   cardapios: Cardapio[] = [];
 
