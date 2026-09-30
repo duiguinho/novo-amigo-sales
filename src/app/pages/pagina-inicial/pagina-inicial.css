@@ -45,6 +45,7 @@ h3{
 h1{
     font-weight: bold;
     font-size: 2.3rem;
+    margin-bottom: 15px;
 }
 
 p{
@@ -86,7 +87,7 @@ a{
 .first-floor{
     display: flex;
     width: 100%;
-    height: 50vh;
+    height: 55vh;
     justify-content: center;
     /* padding-top: 50px; */
     /* padding-left: 130px;
@@ -127,7 +128,7 @@ a{
     height: 50%;
     display: flex;
     flex-direction: column;
-    padding-top: 50px;
+    padding-top: 70px;
     padding-left: 130px;
     padding-right: 130px;
 }
@@ -220,7 +221,8 @@ a{
     width: 100%;
     height: 100%;
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 0;
 }
 
 /* --------------------------------define a caixa de texto das informaçoes sobre a escola--------------------------------------- */
