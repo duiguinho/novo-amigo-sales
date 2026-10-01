@@ -1,1 +1,42 @@
-<p>biblioteca works!</p>
+<main>
+    <div class="backSuperior"></div>
+    <div class="conteudo">
+
+        <div class="barraBusca">
+            <input type="text" id="barraPesquisa" placeholder="Pesquise por livro, autor, ou ISBN...">
+        </div>
+
+        <div class="filtros">
+
+        </div>
+
+        <div class="livros">
+            
+            @for (livro of livrosVisiveis; track livro.titulo){
+
+                <div class="livro">
+                    
+                    <img src="" alt="">
+
+                    <h2>{{ livro.titulo }}</h2>
+
+                    <h3>{{ livro.autor }}</h3>
+
+                    @if (livro.disponivel) {
+                <span class="disponivel">
+                    Disponível
+                </span>
+            } @else {
+                <span class="indisponivel">
+                    Indisponível
+                </span>
+            }
+
+                </div>
+
+            }
+
+        </div>
+
+    </div>
+</main>

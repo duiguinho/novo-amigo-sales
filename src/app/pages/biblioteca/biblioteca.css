@@ -1,0 +1,107 @@
+main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #faf8f4;
+}
+
+.backSuperior{
+    width: 100%;
+    height: 20vh;
+    background-color: gray;
+}
+
+.conteudo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.barraBusca{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+#barraPesquisa{
+    width: 400px;
+    border: none;
+    padding: 7px;
+    box-shadow: 4px 5px 15px rgba(0, 0, 0, 0.463);
+}
+
+.livros{
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 40px;
+}
+
+.livro{
+    width: 100%;
+    height: 370px;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.225);
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+h2{
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: var(--font-league-spartan);
+    margin-top: 10px;
+}
+
+h3{
+    font-size: 0.80rem;
+}
+
+.disponivel{
+    width: auto;
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 20px;
+    background-color: var(--second-correct-color);
+    color: var(--correct-color);
+    font-size: 0.80rem;
+    font-family: var(--font-league-spartan);
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.indisponivel{
+    width: auto;
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 20px;
+    background-color: var(--second-wrong-color);
+    color: var(--wrong-color);
+    font-size: 0.80rem;
+    font-family: var(--font-league-spartan);
+    font-weight: bold;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+}

@@ -15,6 +15,10 @@ body {
     --primary-color: #721111;
     --secondary-color: #430a0a;
     --tertiary-color: #9198a0;
+    --correct-color: green;
+    --second-correct-color: rgba(86, 224, 86, 0.419);
+    --wrong-color: rgb(207, 7, 7);
+    --second-wrong-color: rgba(255, 93, 93, 0.329);
 
     --font-league-spartan: "League Spartan", sans-serif;
     --font-montserrat: "Montserrat", sans-serif;
