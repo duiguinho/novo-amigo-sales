@@ -7,7 +7,7 @@ main{
 
 .backSuperior{
     width: 100%;
-    height: 20vh;
+    height: 15vh;
     background-color: gray;
 }
 
@@ -21,28 +21,28 @@ main{
 .barraBusca{
     display: flex;
     justify-content: center;
-    margin-top: 50px;
 }
 
 #barraPesquisa{
     width: 400px;
     border: none;
     padding: 7px;
-    box-shadow: 4px 5px 15px rgba(0, 0, 0, 0.463);
+    box-shadow: 4px 5px 15px rgba(0, 0, 0, 0.256);
 }
 
 .livros{
     width: 100%;
     display: flex;
-    gap: 30px;
+    justify-content: center;
+    gap: 35px;
     padding-left: 40px;
     padding-right: 40px;
     padding-top: 40px;
 }
 
 .livro{
-    width: 100%;
-    height: 370px;
+    width: 270px;
+    height: 340px;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.225);
@@ -52,6 +52,13 @@ main{
     align-items: center;
     justify-content: center;
     
+}
+
+.livro h2{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
 }
 
 h2{
@@ -104,4 +111,9 @@ img{
     height: 100%;
     border: 1px solid black;
     border-radius: 5px;
+}
+
+mat-paginator{
+    margin-top: 10px;
+    background-color:#faf8f4;
 }

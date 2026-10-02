@@ -3,7 +3,8 @@
     <div class="conteudo">
 
         <div class="barraBusca">
-            <input type="text" id="barraPesquisa" placeholder="Pesquise por livro, autor, ou ISBN...">
+            <input type="text" id="barraPesquisa" placeholder="Pesquise por livro, autor, ou ISBN..."
+             [(ngModel)]="busca" (input)="buscarLivro()" >
         </div>
 
         <div class="filtros">
@@ -37,6 +38,11 @@
             }
 
         </div>
+        <mat-paginator
+            [length]="livros.length"
+            [pageSize]="5"
+            (page)="mudarPagina($event)">
+        </mat-paginator>
 
     </div>
 </main>
