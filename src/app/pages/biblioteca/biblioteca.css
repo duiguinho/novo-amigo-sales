@@ -41,8 +41,8 @@ main{
 }
 
 .livro{
-    width: 270px;
-    height: 340px;
+    width: 250px;
+    height: 330px;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.225);
