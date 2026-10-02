@@ -3,8 +3,8 @@
 /* ----------------------------------------------------- */
 
 .aviso-card{
-    width: 270px;
-    height: 300px;
+    width: 220px;
+    height: 240px;
     border: 0.5px solid rgba(128, 128, 128, 0.444);
     border-radius: 5px;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.325);
@@ -26,7 +26,7 @@ hr{
 
 .card-titulo{
     font-family: var(--font-league-spartan);
-    font-size: 1.75rem ;
+    font-size: 1.4rem ;
     color: black;
     font-weight: bold;
     margin-top: 25px;
@@ -36,6 +36,6 @@ hr{
 .p-conteudo{
     color: gray;
     font-family: arial;
-    font-size: 1.2rem ;
+    font-size: 0.9rem ;
     line-height: 1.2;
 }
