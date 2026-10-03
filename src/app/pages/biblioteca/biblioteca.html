@@ -15,7 +15,7 @@
             
             @for (livro of livrosVisiveis; track livro.titulo){
 
-                <div class="livro">
+                <button class="livro" data-bs-toggle="offcanvas" href="#livroInformacoes" role="button" aria-controls="offcanvasExample">
                     
                     <img src="" alt="">
 
@@ -33,9 +33,29 @@
                 </span>
             }
 
-                </div>
+                </button>
 
             }
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="livroInformacoes" aria-labelledby="offcanvasExampleLabel">
+                <div class="offcanvas-body">
+                    
+                    <div class="offcontainer">
+                        <div class="offcapalivro"><img src="" alt=""></div>
+                    </div>
+
+                    <h2>titulo: </h2>
+                    <h3>autor: </h3>
+                    <h3>ano de lançamento:  </h3>
+
+                    <p>sinopse</p>
+
+                    <h3>ISBN</h3>
+                    
+                    <h3>disponibilidade</h3>
+   
+                </div>
+            </div>
 
         </div>
         <mat-paginator
