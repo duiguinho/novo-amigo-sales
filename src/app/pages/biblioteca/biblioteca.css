@@ -80,7 +80,7 @@ h3{
 }
 
 .disponivel{
-    width: auto;
+    width:min-content;
     padding: 3px;
     padding-left: 7px;
     padding-right: 7px;
@@ -97,7 +97,7 @@ h3{
 }
 
 .indisponivel{
-    width: auto;
+    width: min-content;
     padding: 3px;
     padding-left: 7px;
     padding-right: 7px;
@@ -113,11 +113,11 @@ h3{
     justify-content: center;
 }
 
-img{
+.livro img{
     width: 100%;
     height: 100%;
-    border: 1px solid black;
     border-radius: 5px;
+    overflow: hidden;
 }
 
 mat-paginator{
@@ -126,9 +126,21 @@ mat-paginator{
 }
 
 .offcanvas{
-    background-color: #faf8f4;
     display: flex;
     padding: 50px;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+.offcanvas-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #faf8f4;
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.349);
+    text-align: center;
 }
 
 .offcontainer{
@@ -136,16 +148,23 @@ mat-paginator{
     height: 300px;
     background-color: white;
     border-radius: 5px;
-    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.111);
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.289);
     margin: 0 auto;
     padding: 30px;
+    border: 1px solid rgba(114, 114, 114, 0.105) ;
 }
 
 .offcapalivro{
     width: 100%;
     height: 100%;
     border: 1px solid black;
-    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.111);
+    box-shadow: 4px 5px 10px rgba(0, 0, 0, 0.315);
     border: none;
     border-radius: 5px;
+    overflow: hidden;
 }
+
+.offcapalivro img{
+    width: 100%;
+}
+

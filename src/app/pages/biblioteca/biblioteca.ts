@@ -14,7 +14,7 @@ livros = [
   {
     titulo: 'Lino',
     autor: 'André Neves',
-    imagem: 'images/lino.jpg',
+    imagem: 'https://m.media-amazon.com/images/I/A1Y4fkagfLL.jpg',
     disponivel: true,
     sinopse: 'Lino é um porquinho de brinquedo que vive em uma loja junto de sua amiga Lua. Quando Lua é levada por uma criança, Lino passa a sentir sua falta e começa uma jornada em busca de uma nova amizade.',
     anoLancamento: 2010,
@@ -196,6 +196,7 @@ livros = [
 busca: string = '';
 livrosVisiveis = this.livros.slice(0, 5);
 livrosFiltrados = this.livros;
+livroSelecionado: any = null;
 
   mudarPagina(event: PageEvent) {
 
@@ -216,6 +217,10 @@ buscarLivro( ){
   );
 
   this.livrosVisiveis = this.livrosFiltrados.slice(0, 5);
+}
+
+selecionarLivro(livro: any){
+  this.livroSelecionado = livro
 }
 
 }

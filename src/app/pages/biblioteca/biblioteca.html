@@ -15,9 +15,10 @@
             
             @for (livro of livrosVisiveis; track livro.titulo){
 
-                <button class="livro" data-bs-toggle="offcanvas" href="#livroInformacoes" role="button" aria-controls="offcanvasExample">
+                <button class="livro" data-bs-toggle="offcanvas" href="#livroInformacoes" 
+                role="button" aria-controls="offcanvasExample" (click)="selecionarLivro(livro)">
                     
-                    <img src="" alt="">
+                    <img src="{{livro.imagem}}" >
 
                     <h2>{{ livro.titulo }}</h2>
 
@@ -36,28 +37,41 @@
                 </button>
 
             }
+        </div>
+            
+            @if (livroSelecionado){    
 
             <div class="offcanvas offcanvas-end" tabindex="-1" id="livroInformacoes" aria-labelledby="offcanvasExampleLabel">
                 <div class="offcanvas-body">
                     
                     <div class="offcontainer">
-                        <div class="offcapalivro"><img src="" alt=""></div>
+                        <div class="offcapalivro"><img src="{{livroSelecionado.imagem}}" alt=""></div>
                     </div>
-
-                    <h2>titulo: </h2>
-                    <h3>autor: </h3>
-                    <h3>ano de lançamento:  </h3>
-
-                    <p>sinopse</p>
-
-                    <h3>ISBN</h3>
                     
-                    <h3>disponibilidade</h3>
-   
+    
+                    <h2>{{livroSelecionado.titulo}}</h2>
+                    <h3>{{livroSelecionado.autor}}</h3>
+                    <h3>{{livroSelecionado.anoLancamento}}</h3>
+    
+                    <p>{{livroSelecionado.sinopse}}</p>
+    
+                    <h3>ISBN: {{livroSelecionado.isbn}}</h3>
+                    
+                     @if (livroSelecionado.disponivel) {
+                <span class="disponivel">
+                    Disponível
+                </span>
+            } @else {
+                <span class="indisponivel">
+                    Indisponível
+                </span>
+            }
+                    
                 </div>
             </div>
 
-        </div>
+        }
+
         <mat-paginator
             [length]="livros.length"
             [pageSize]="5"
