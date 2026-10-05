@@ -47,20 +47,9 @@ export class GerenciarCardapio {
 
     this.cardapioService.adicionarCardapio(novoCardapio);
 
+    this.novoManha = '';
+    this.novoTarde = ''
+
   }
-
-  // editarCardapio(id:number){
-
-  //   let cardapio = this.cardapios.find(cardapio => cardapio.id == id)
-
-  //   if (!cardapio){
-  //     return;
-  //   }
-
-  //   this.novoManha = cardapio.manha;
-  //   this.novoTarde = cardapio.tarde;
-  //   this.cardapioEditado = id;
-
-  // }
 
 }

@@ -4,6 +4,7 @@ import { Jornal } from './pages/jornal/jornal';
 import { Biblioteca } from './pages/biblioteca/biblioteca';
 import { Sala } from './pages/sala/sala';
 import { GerenciarCardapio } from './components/gerenciar-cardapio/gerenciar-cardapio';
+import { GerenciarAvisos } from './components/gerenciar-avisos/gerenciar-avisos';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'pg-inicial', pathMatch: 'full' },
@@ -12,5 +13,6 @@ export const routes: Routes = [
     {path: "pg-jornal", component: Jornal},
     {path: "pg-biblioteca", component: Biblioteca},
     {path: "pg-sala", component: Sala},
-    {path: "gerenciar-cardapio", component: GerenciarCardapio}
+    {path: "gerenciar-cardapio", component: GerenciarCardapio},
+    {path: "gerenciar-avisos", component: GerenciarAvisos}
 ];

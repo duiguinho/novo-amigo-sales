@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './aviso.html',
   styleUrl: './aviso.css',
 })
-export class Aviso {
+export class AvisoComponent {
 
   @Input() titulo: string='';
   @Input() descricao: string='';

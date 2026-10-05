@@ -21,7 +21,7 @@
             <h1 id="avisos-h1">AVISOS</h1>
             <div class="cards">
                 
-                @for (noticia of noticias; track noticia.id) {
+                @for (noticia of noticiasVisiveis; track noticia.id) {
 
             <app-aviso
                 [titulo]="noticia.titulo"
@@ -31,6 +31,15 @@
     }    
 
             </div>
+
+            <mat-paginator id="paginacao-aviso"
+            [length]="noticias.length"
+            [pageSize]="4"
+            [pageSizeOptions]="[4]"
+            (page)="mudarPagina($event)">
+
+            </mat-paginator>
+
         </div>
 
     </div>
