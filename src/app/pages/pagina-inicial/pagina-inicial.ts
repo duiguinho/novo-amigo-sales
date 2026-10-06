@@ -24,8 +24,11 @@ export class PaginaInicial {
   });
 }
 
-noticias: Aviso[] = [];
-noticiasVisiveis: Aviso[] = [];
+noticias: Aviso[] = [
+];
+noticiasVisiveis: Aviso[] = [
+  
+];
 
 ngOnInit() {
   this.noticias = this.avisoService.obterAvisos();
@@ -39,8 +42,10 @@ ngOnInit() {
 
     this.noticiasVisiveis = this.noticias.slice(inicio, fim);
   }
+  
 
 }
+
 
 
 
