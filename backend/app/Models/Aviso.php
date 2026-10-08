@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Aviso extends Model
 {
     protected $fillable = [
-        'mensagem',
+        'titulo',
+        'descricao',
         'data_expiracao',
     ];
 

@@ -31,8 +31,14 @@ noticiasVisiveis: Aviso[] = [
 ];
 
 ngOnInit() {
-  this.noticias = this.avisoService.obterAvisos();
-  this.noticiasVisiveis = this.noticias.slice(0,4);
+  this.carregarAvisos();
+}
+
+carregarAvisos() {
+  this.avisoService.obterAvisos().subscribe(avisos => {
+    this.noticias = avisos;
+    this.noticiasVisiveis = this.noticias.slice(0, 4);
+  });
 }
 
   mudarPagina(event: PageEvent) {

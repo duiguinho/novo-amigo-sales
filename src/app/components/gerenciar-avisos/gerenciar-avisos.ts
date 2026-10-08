@@ -13,24 +13,33 @@ export class GerenciarAvisos {
 
   novoTitulo= "";
   novoDescricao= "";
+  novaDataExpiracao = "";
 
   constructor(private avisoService: AvisosService) {}
 
-  adicionarAviso(){
+  adicionarAviso() {
 
     const novoAviso: Aviso = {
-      id: this.avisoService.obterAvisos().length+1,
+      id: 0,
       titulo: this.novoTitulo,
-      descricao: this.novoDescricao
+      descricao: this.novoDescricao,
+      data_expiracao: this.novaDataExpiracao
     };
 
-    this.avisoService.adicionarAviso(novoAviso);
+    this.avisoService.adicionarAviso(novoAviso).subscribe({
+      next: () => {
+        alert('Aviso adicionado');
 
-    alert('aviso adicionado')
+        this.novoTitulo = "";
+        this.novoDescricao = "";
+        this.novaDataExpiracao = "";
+      },
+      error: (erro) => {
+        console.error(erro);
+        alert('Não foi possível adicionar o aviso');
+      }
+    });
 
-    this.novoTitulo = "";
-    this.novoDescricao = "";
-
-  }
+}
 
 }

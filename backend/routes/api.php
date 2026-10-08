@@ -72,7 +72,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 #Aviso
-Route::get('/avisos', [AvisoController::class, 'index']);
+Route::get('/avisos', [AvisoController::class, 'index']); #get esta publico para que qualquer um tenha acesso ao entrar no site
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/avisos', [AvisoController::class, 'store']);

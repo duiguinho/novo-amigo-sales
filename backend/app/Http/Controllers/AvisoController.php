@@ -33,14 +33,16 @@ class AvisoController extends Controller
         }
 
         $request->validate([
-            'mensagem' => 'required|string',
-            'data_expiracao' => 'required|date', // precisa ser uma data válida
-        ]);
+            'titulo' => 'required|string',
+            'descricao' => 'required|string',
+            'data_expiracao' => 'required|date',
+]);
 
         $aviso = Aviso::create([
-            'mensagem' => $request->mensagem,
+            'titulo' => $request->titulo,
+            'descricao' => $request->descricao,
             'data_expiracao' => $request->data_expiracao,
-        ]); 
+]);
 
         return response()->json($aviso, 201);
     }

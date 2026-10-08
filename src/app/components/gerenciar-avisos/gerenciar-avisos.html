@@ -1,14 +1,16 @@
 <main>
-    <h1>adicione notícias aqui:</h1>
+  <h1>Adicione notícias aqui:</h1>
 
-    <label for="titulo">Adicione o titulo do seu aviso</label>
+  <label for="titulo">Adicione o título do seu aviso</label>
 
-    <input type="text" id="TituloInput" [(ngModel)]="novoTitulo" placeholder="Escreva o título da notícia">
+  <input type="text" id="titulo" [(ngModel)]="novoTitulo" placeholder="Escreva o título da notícia">
 
-    <label for="descricao">Adicione o titulo do seu aviso</label>
+  <label for="descricao">Adicione a descrição do seu aviso</label>
 
-    <input type="text" id="DescricaoInput" [(ngModel)]="novoDescricao" placeholder="Escreva a descrição da notícia">
+  <input type="text" id="descricao" [(ngModel)]="novoDescricao" placeholder="Escreva a descrição da notícia" >
 
-    <button (click)="adicionarAviso()">Enviar</button>
+  <label for="dataExpiracao">Data de expiração</label>
 
+  <input type="date" id="dataExpiracao" [(ngModel)]="novaDataExpiracao" >
+  <button (click)="adicionarAviso()">Enviar</button>
 </main>
