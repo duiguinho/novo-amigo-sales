@@ -1,0 +1,51 @@
+
+<div class="login-container">
+
+  <div class="login-header">
+    <h2>JORNAL SALES</h2>
+    <p>Bem-vindo de volta!</p>
+    <span>Entre na sua conta para continuar.</span>
+  </div>
+
+  <form (ngSubmit)="entrar()">
+
+    <div class="campo">
+      <label for="nome_usuario">Nome de usuário</label>
+      <input
+        type="text"
+        id="nome_usuario"
+        name="nome_usuario"
+        [(ngModel)]="nome_usuario"
+        placeholder="Digite seu nome de usuário"
+        required
+      />
+    </div>
+
+    <div class="campo">
+      <label for="senha">Senha</label>
+      <input
+        type="password"
+        id="senha"
+        name="senha"
+        [(ngModel)]="senha"
+        placeholder="Digite sua senha"
+        required
+      />
+    </div>
+
+    <button type="submit" class="btn-entrar">
+      ENTRAR
+    </button>
+
+  </form>
+
+  <div class="login-footer">
+    <p>
+      Não tem uma conta?
+      <a href="#" (click)="abrirCadastro($event)">
+        Cadastre-se
+      </a>
+    </p>
+  </div>
+
+</div>

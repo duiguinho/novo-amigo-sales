@@ -1,0 +1,120 @@
+<div class="cadastro-container">
+
+  <div class="cadastro-header">
+    <h2>JORNAL SALES</h2>
+    <h3>Crie sua conta</h3>
+    <p>Preencha seus dados para acessar o jornal da escola.</p>
+  </div>
+
+  <form #formCadastro="ngForm" (ngSubmit)="cadastrar()">
+
+    <div class="campo">
+      <label for="nome_completo">Nome completo</label>
+      <input
+        type="text"
+        id="nome_completo"
+        name="nome_completo"
+        [(ngModel)]="nome_completo"
+        placeholder="Digite seu nome completo"
+        autocomplete="name"
+        required
+      />
+    </div>
+
+    <div class="campo">
+      <label for="nome_usuario">Nome de usuário</label>
+      <input
+        type="text"
+        id="nome_usuario"
+        name="nome_usuario"
+        [(ngModel)]="nome_usuario"
+        placeholder="Escolha seu nome de usuário"
+        autocomplete="username"
+        required
+      />
+    </div>
+
+    <div class="campo">
+      <label for="email">E-mail</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="email"
+        placeholder="Digite seu e-mail"
+        autocomplete="email"
+        required
+      />
+    </div>
+
+    <div class="campo">
+      <label for="sala_id">Sala / Turma</label>
+      <select
+        id="sala_id"
+        name="sala_id"
+        [(ngModel)]="sala_id"
+        required
+      >
+        <option [ngValue]="null" disabled>
+          Selecione sua turma
+        </option>
+
+        @for (sala of salas; track sala.id) {
+          <option [ngValue]="sala.id">
+            {{ sala.nome }}
+          </option>
+        }
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="senha">Senha</label>
+      <input
+        type="password"
+        id="senha"
+        name="senha"
+        [(ngModel)]="senha"
+        placeholder="Crie uma senha"
+        autocomplete="new-password"
+        minlength="6"
+        required
+      />
+    </div>
+
+    <div class="campo">
+      <label for="confirmarSenha">Confirmar senha</label>
+      <input
+        type="password"
+        id="confirmarSenha"
+        name="confirmarSenha"
+        [(ngModel)]="confirmarSenha"
+        placeholder="Digite a senha novamente"
+        autocomplete="new-password"
+        required
+      />
+    </div>
+
+    @if (mensagem) {
+      <p class="mensagem" role="status">
+        {{ mensagem }}
+      </p>
+    }
+
+    <button type="submit" class="btn-cadastrar">
+      CRIAR CONTA
+    </button>
+
+  </form>
+
+  <div class="cadastro-footer">
+    <p>Já tem uma conta?</p>
+    <button
+      type="button"
+      class="link-login"
+      (click)="abrirLogin()"
+    >
+      Voltar ao login
+    </button>
+  </div>
+
+</div>

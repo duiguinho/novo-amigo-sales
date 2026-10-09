@@ -1,3 +1,4 @@
+
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
@@ -26,11 +27,13 @@
               }
             ],
             "styles": [
+              "bootstrap/dist/css/bootstrap.min.css",
               "src/material-theme.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
+            "scripts": [
+              "bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {

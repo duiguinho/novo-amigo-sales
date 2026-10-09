@@ -1,0 +1,143 @@
+
+/* Container principal */
+.login-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  color: #292929;
+}
+
+.mat-mdc-dialog-surface{
+  border-radius: 5px !important;
+}
+
+/* Cabeçalho */
+.login-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-header h2 {
+  color: #790f13;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin: 0 0 22px;
+}
+
+.login-header p {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.login-header span {
+  display: block;
+  color: #777777;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Formulário */
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.campo label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+}
+
+.campo input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #d5d5d5;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
+  background-color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo input::placeholder {
+  color: #aaaaaa;
+}
+
+.campo input:focus {
+  border-color: #790f13;
+  box-shadow: 0 0 0 3px rgba(121, 15, 19, 0.12);
+}
+
+/* Botão entrar */
+.btn-entrar {
+  width: 100%;
+  padding: 14px;
+  margin-top: 4px;
+  border: none;
+  border-radius: 8px;
+  background-color: #790f13;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-entrar:hover {
+  background-color: #5d0b0e;
+}
+
+.btn-entrar:active {
+  transform: scale(0.98);
+}
+
+/* Rodapé e cadastro */
+.login-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.login-footer p {
+  margin: 0;
+  font-size: 14px;
+  color: #666666;
+}
+
+.login-footer a {
+  color: #790f13;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Telas pequenas */
+@media (max-width: 400px) {
+  .login-container {
+    padding: 22px 18px;
+  }
+
+  .login-header h2 {
+    font-size: 22px;
+  }
+
+  .login-header p {
+    font-size: 20px;
+  }
+}

@@ -1,18 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-*{
-    font-family: 'Times New Roman', Times, serif;
-}
-body {
-    margin: 0;
-    padding: 0 !important
-    ;
-    background-color: #faf8f4;
-}
-
-
-:root{
+:root {
     --background-color: #faf8f4;
     --primary-color: #721111;
     --secondary-color: #430a0a;
@@ -26,8 +15,22 @@ body {
     --font-montserrat: "Montserrat", sans-serif;
 }
 
+* {
+    font-family: var(--font-montserrat);
+}
+
+body {
+    margin: 0;
+    padding: 0 !important;
+    background-color: var(--background-color);
+}
+
 .cardapio-dialog .mat-mdc-dialog-container .mdc-dialog__surface {
     width: 600px;
     height: 310px;
     border-radius: 5px !important;
+}
+
+.login-dialog .mat-mdc-dialog-surface {
+  border-radius: 5px !important;
 }
