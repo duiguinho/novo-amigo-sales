@@ -1,7 +1,5 @@
 export interface Cardapio {
     id: number;
-    letra: string;
-    nome: string;
-    manha: string;
-    tarde: string;
+    dia_semana: string;
+    refeicao: string;
 }

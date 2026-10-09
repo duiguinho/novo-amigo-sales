@@ -4,42 +4,53 @@ import { Cardapio } from '../../models/cardapio';
 import { CardapioService } from '../../service/cardapio';
 
 @Component({
-  selector: 'app-cardapio',
-  imports: [ CommonModule],
-  templateUrl: './cardapio.html',
-  styleUrl: './cardapio.css',
+selector: 'app-cardapio',
+imports: [CommonModule],
+templateUrl: './cardapio.html',
+styleUrl: './cardapio.css',
 })
 export class CardapioComponent implements OnInit {
 
-  cardapios: Cardapio[] = [];
-  
-  diaSelecionado = 1;
+cardapios: Cardapio[] = [];
 
-  constructor(private cardapioService: CardapioService){}
+diaSelecionado = 'segunda';
 
-  ngOnInit() {
-    this.cardapios = this.cardapioService.obterCardapio();
-  }
+constructor(private cardapioService: CardapioService) {}
 
-  dias: Cardapio[] = [
-  {id: 1, letra: 'S', nome: 'Segunda-feira', manha: '', tarde: ''},
-  {id: 2, letra: 'T', nome: 'Terça-feira', manha: '', tarde: ''},
-  {id: 3, letra: 'Q', nome: 'Quarta-feira', manha: '', tarde: ''},
-  {id: 4, letra: 'Q', nome: 'Quinta-feira', manha: '', tarde: ''},
-  {id: 5, letra: 'S', nome: 'Sexta-feira', manha: '', tarde: ''},
+ngOnInit() {
+this.cardapioService.obterCardapio().subscribe({
+next: (cardapios) => {
+this.cardapios = cardapios;
+},
+error: (erro) => {
+console.error('Erro ao carregar cardápio:', erro);
+}
+});
+}
+
+dias = [
+{ dia_semana: 'segunda', letra: 'S', nome: 'Segunda-feira' },
+{ dia_semana: 'terca', letra: 'T', nome: 'Terça-feira' },
+{ dia_semana: 'quarta', letra: 'Q', nome: 'Quarta-feira' },
+{ dia_semana: 'quinta', letra: 'Q', nome: 'Quinta-feira' },
+{ dia_semana: 'sexta', letra: 'S', nome: 'Sexta-feira' },
 ];
 
-  
-  selecionarDia(id: number){
-    this.diaSelecionado = id;
-  }
+selecionarDia(dia: string) {
+this.diaSelecionado = dia;
+}
 
-  get diaAtual() {
-    let dia = this.dias.find(dia => dia.id === this.diaSelecionado);
+get diaAtual() {
+return this.dias.find(
+dia => dia.dia_semana === this.diaSelecionado
+);
+}
 
-    return this.cardapios.find(cardapio => cardapio.nome === dia?.nome)
-  }
-
+get refeicoesDoDia() {
+return this.cardapios.filter(
+cardapio => cardapio.dia_semana === this.diaSelecionado
+);
+}
 }
 
 

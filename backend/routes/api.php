@@ -81,15 +81,17 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 #Cardapio
-Route::middleware('auth:sanctum')->group(function () {
 
-    Route::get('/cardapios', [CardapioController::class, 'index']);
+// Get publico
+Route::get('/cardapios', [CardapioController::class, 'index']);
+Route::get('/cardapios/{id}', [CardapioController::class, 'show']);
+
+Route::middleware('auth:sanctum')->group(function () {
     Route::post('/cardapios', [CardapioController::class, 'store']);
-    Route::get('/cardapios/{id}', [CardapioController::class, 'show']);
     Route::put('/cardapios/{id}', [CardapioController::class, 'update']);
     Route::delete('/cardapios/{id}', [CardapioController::class, 'destroy']);
-
 });
+
 
 
 #Sala

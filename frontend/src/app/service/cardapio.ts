@@ -1,28 +1,23 @@
+
 import { Injectable } from '@angular/core';
-import {Cardapio } from '../models/cardapio';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Cardapio } from '../models/cardapio';
 
 @Injectable({
-  providedIn: 'root',
+providedIn: 'root',
 })
 export class CardapioService {
 
-  cardapios: Cardapio[] = [];
+private apiUrl = 'http://127.0.0.1:8000/api/cardapios';
 
-  adicionarCardapio(cardapio: Cardapio) {
+constructor(private http: HttpClient) {}
 
-     let indice = this.cardapios.findIndex(
-    c => c.id === cardapio.id
-  );
+obterCardapio(): Observable<Cardapio[]> {
+return this.http.get<Cardapio[]>(this.apiUrl);
+}
 
-  if (indice !== -1) {
-    this.cardapios[indice] = cardapio;
-  } else {
-    this.cardapios.push(cardapio);
-  }
-  }
-
-  obterCardapio(): Cardapio[] {
-    return this.cardapios; 
-  }
-
+adicionarCardapio(cardapio: Omit<Cardapio, 'id'>): Observable<Cardapio> {
+return this.http.post<Cardapio>(this.apiUrl, cardapio);
+}
 }
