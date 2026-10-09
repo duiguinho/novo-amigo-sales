@@ -17,30 +17,34 @@
         </div>
 
 
-        <div class="s-half">
-            <h1 id="avisos-h1">AVISOS</h1>
-            <div class="cards">
-                
-                @for (noticia of noticiasVisiveis; track noticia.id) {
+        
+<div class="s-half">
+  <h1 id="avisos-h1">AVISOS</h1>
 
-            <app-aviso
-                [titulo]="noticia.titulo"
-                [descricao]="noticia.descricao">
-            </app-aviso>
+  @if (carregandoAvisos) {
+  <p>Carregando avisos...</p>
+} @else if (noticias.length === 0) {
+  <p>Nenhum aviso disponível.</p>
+}
 
-    }    
+  <div class="cards">
+    @for (noticia of noticiasVisiveis; track noticia.id) {
+      <app-aviso
+        [titulo]="noticia.titulo"
+        [descricao]="noticia.descricao">
+      </app-aviso>
+    }
+  </div>
 
-            </div>
+  <mat-paginator
+    id="paginacao-aviso"
+    [length]="noticias.length"
+    [pageSize]="4"
+    [pageSizeOptions]="[4]"
+    (page)="mudarPagina($event)">
+  </mat-paginator>
+</div>
 
-            <mat-paginator id="paginacao-aviso"
-            [length]="noticias.length"
-            [pageSize]="4"
-            [pageSizeOptions]="[4]"
-            (page)="mudarPagina($event)">
-
-            </mat-paginator>
-
-        </div>
 
     </div>
 

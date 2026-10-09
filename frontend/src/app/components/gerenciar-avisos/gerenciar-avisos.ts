@@ -37,6 +37,7 @@ export class GerenciarAvisos {
       error: (erro) => {
         console.error(erro);
         alert('Não foi possível adicionar o aviso');
+        
       }
     });
 
