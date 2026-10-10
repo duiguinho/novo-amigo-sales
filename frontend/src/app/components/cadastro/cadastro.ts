@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login';
+import { CadastroModel } from '../../models/cadastro';
 
 interface Sala {
   id: number;
@@ -19,26 +20,27 @@ export class CadastroComponent {
 
   constructor(private dialog: MatDialog) {}
 
-abrirLogin() {
-  this.dialog.closeAll();
+  abrirLogin() {
+    this.dialog.closeAll();
 
-  this.dialog.open(LoginComponent, {
-    width: '400px',
-    maxWidth: '95vw',
-    maxHeight: '90vh',
-    autoFocus: false,
-    panelClass: 'login-dialog'
-  });
-}
+    this.dialog.open(LoginComponent, {
+      width: '400px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      autoFocus: false,
+      panelClass: 'login-dialog'
+    });
+  }
 
-  nome_completo: string = '';
-  nome_usuario: string = '';
-  email: string = '';
-  senha: string = '';
-  confirmarSenha: string = '';
-  sala_id: number | null = null;
+  cadastro: CadastroModel = {
+    nome_completo: '',
+    nome_usuario: '',
+    email: '',
+    senha: '',
+    confirmarSenha: '',
+    sala_id: null
+  };
 
-  // Salas temporárias para montar e testar a interface.
   salas: Sala[] = [
     { id: 1, nome: '1º DS' },
     { id: 2, nome: '2º DS' },
@@ -54,35 +56,34 @@ abrirLogin() {
     this.mensagem = '';
 
     if (
-      !this.nome_completo.trim() ||
-      !this.nome_usuario.trim() ||
-      !this.email.trim() ||
-      !this.senha ||
-      this.sala_id === null
+      !this.cadastro.nome_completo.trim() ||
+      !this.cadastro.nome_usuario.trim() ||
+      !this.cadastro.email.trim() ||
+      !this.cadastro.senha ||
+      this.cadastro.sala_id === null
     ) {
       this.mensagem = 'Preencha todos os campos.';
       return;
     }
 
-    if (this.senha.length < 6) {
+    if (this.cadastro.senha.length < 6) {
       this.mensagem = 'A senha deve ter pelo menos 6 caracteres.';
       return;
     }
 
-    if (this.senha !== this.confirmarSenha) {
+    if (this.cadastro.senha !== this.cadastro.confirmarSenha) {
       this.mensagem = 'As senhas não coincidem.';
       return;
     }
 
-    // Por enquanto, apenas verificamos os dados do formulário.
-    // A integração com o Laravel será feita depois.
     console.log({
-      nome_completo: this.nome_completo,
-      nome_usuario: this.nome_usuario,
-      email: this.email,
-      sala_id: this.sala_id
+      nome_completo: this.cadastro.nome_completo,
+      nome_usuario: this.cadastro.nome_usuario,
+      email: this.cadastro.email,
+      sala_id: this.cadastro.sala_id
     });
 
-    this.mensagem = 'Formulário validado! O cadastro ainda não foi enviado.';
+    this.mensagem =
+      'Formulário validado! O cadastro ainda não foi enviado.';
   }
 }

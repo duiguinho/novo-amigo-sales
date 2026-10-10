@@ -1,8 +1,8 @@
-
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CadastroComponent } from '../cadastro/cadastro';
+import { LoginModel } from '../../models/login';
 
 @Component({
   selector: 'app-login',
@@ -13,20 +13,21 @@ import { CadastroComponent } from '../cadastro/cadastro';
 })
 export class LoginComponent {
 
-  nome_usuario: string = '';
-  senha: string = '';
+  login: LoginModel = {
+    nome_usuario: '',
+    senha: ''
+  };
 
   constructor(private dialog: MatDialog) {}
 
   entrar() {
-    if (!this.nome_usuario || !this.senha) {
+    if (!this.login.nome_usuario.trim() || !this.login.senha) {
       alert('Preencha o nome de usuário e a senha.');
       return;
     }
 
     // Depois conectaremos este método à API Laravel.
-    console.log('Nome de usuário:', this.nome_usuario);
-    console.log('Senha preenchida.');
+    console.log('Dados de login:', this.login);
   }
 
   abrirCadastro(event: Event) {
@@ -34,8 +35,12 @@ export class LoginComponent {
 
     this.dialog.closeAll();
 
-    this.dialog.open(CadastroComponent);
+    this.dialog.open(CadastroComponent, {
+      width: '400px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      autoFocus: false,
+      panelClass: 'login-dialog'
+    });
   }
-
-  
 }

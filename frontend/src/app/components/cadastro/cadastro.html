@@ -14,7 +14,7 @@
         type="text"
         id="nome_completo"
         name="nome_completo"
-        [(ngModel)]="nome_completo"
+        [(ngModel)]="cadastro.nome_completo"
         placeholder="Digite seu nome completo"
         autocomplete="name"
         required
@@ -27,7 +27,7 @@
         type="text"
         id="nome_usuario"
         name="nome_usuario"
-        [(ngModel)]="nome_usuario"
+        [(ngModel)]="cadastro.nome_usuario"
         placeholder="Escolha seu nome de usuário"
         autocomplete="username"
         required
@@ -40,7 +40,7 @@
         type="email"
         id="email"
         name="email"
-        [(ngModel)]="email"
+        [(ngModel)]="cadastro.email"
         placeholder="Digite seu e-mail"
         autocomplete="email"
         required
@@ -52,7 +52,7 @@
       <select
         id="sala_id"
         name="sala_id"
-        [(ngModel)]="sala_id"
+        [(ngModel)]="cadastro.sala_id"
         required
       >
         <option [ngValue]="null" disabled>
@@ -73,7 +73,7 @@
         type="password"
         id="senha"
         name="senha"
-        [(ngModel)]="senha"
+        [(ngModel)]="cadastro.senha"
         placeholder="Crie uma senha"
         autocomplete="new-password"
         minlength="6"
@@ -87,7 +87,7 @@
         type="password"
         id="confirmarSenha"
         name="confirmarSenha"
-        [(ngModel)]="confirmarSenha"
+        [(ngModel)]="cadastro.confirmarSenha"
         placeholder="Digite a senha novamente"
         autocomplete="new-password"
         required
