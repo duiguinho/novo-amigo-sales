@@ -5,7 +5,7 @@
 
 footer{
     width: 100%;
-    height: 125px;
+    height: 160px;
     background-color: var(--secondary-color);
     display: flex;
     flex-direction: column;
@@ -69,5 +69,32 @@ p{
 hr{
     width: 90%;
     border: 1px solid white;
+}
+
+@media screen and (max-width:380px) {
+    footer{
+        height: 150px;
+    }
+
+    p{
+        font-size: 0.6rem;
+    }
+
+    .instagram{
+        width: 25px;
+        height: 25px;
+    }
+
+    img{
+        width: 17px;
+    }
+
+    .entre-contato{
+        justify-content: end;
+    }
+    
+    .entre-title{
+        justify-content: end;
+    }
 }
 

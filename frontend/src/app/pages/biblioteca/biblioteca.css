@@ -152,7 +152,7 @@ h3{
 
 mat-paginator{
     margin-top: 10px;
-    background-color:#faf8f4;
+    background-color:#faf8f400;
 }
 
 .offcanvas{
@@ -198,3 +198,69 @@ mat-paginator{
     width: 100%;
 }
 
+@media screen and (max-width:380px){
+    main{
+        padding-left: 0px;
+        padding-right: 0px;
+        height: 70vh;
+    }
+
+    .livros{
+        padding-left: 10px;
+        padding-right: 10px;
+        gap: 10px;
+    }
+
+    .livro{
+        width: 60px;
+        height: 130px;
+        padding: 1px !important;
+    }
+
+    h1{
+        font-size: 1.2rem;
+    }
+
+    h3{
+        font-size: 0.8rem;
+    }
+
+    #barraPesquisa{
+        padding: 4px;
+        font-size: 0.7rem;
+    }
+
+    .filtros{
+        margin-top: 25px;
+        gap: 10px;
+    }
+
+    .filtrobutton{
+        width: 65px;
+        padding: 1px;
+        font-size: 0.53rem;
+    }
+
+    .livro, h2{
+        font-size: 0.5rem;
+        overflow: visible;
+    }
+    .livro, #autor-livro-card{
+        padding: 0;
+        margin: 0;
+        font-size: 0;
+    }
+
+    .disponivel, .indisponivel{
+        padding: 0px;
+        padding-left: 2px;
+        padding-right: 2px;
+        font-size: 0.305rem;
+        border-radius: 10px;
+    }
+
+    mat-paginator{
+        margin-top: 0px;
+    }
+
+}
