@@ -22,7 +22,8 @@
 }
 
 html {
-  scrollbar-gutter: stable;
+  overflow-y: scroll !important;
+  overflow-x: hidden;
   background-color: var(--background-color);
 }
 
@@ -161,6 +162,10 @@ body {
 .mat-calendar .mat-calendar-controls {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
+}
+
+.mat-mdc-paginator-range-actions{
+  background-color: #430a0a00;
 }
 
 

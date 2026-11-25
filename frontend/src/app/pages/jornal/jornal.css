@@ -125,7 +125,7 @@ h3{
 
 mat-paginator{
     margin-top: 10px;
-    background-color:#faf8f4;
+    background-color:#faf8f400;
 }
 
 
@@ -195,4 +195,62 @@ mat-paginator{
 
 .abrirPdf:hover{
     background-color: var(--secondary-color);
+}
+
+
+@media screen and (max-width:380px) {
+    main{
+        padding-left: 0px;
+        padding-right: 0px;
+        height: 70vh;
+    }
+
+    .conteudo{
+        padding-left: 10px;
+        padding-right: 10px;
+        gap: 10px;
+    }
+
+    .edicao{
+        width: 60px;
+        height: 130px;
+        padding: 1px !important;
+    }
+
+     h1{
+        font-size: 1.2rem;
+    }
+
+    h3{
+        font-size: 0.7rem;
+    }
+
+    .data-informacao{
+        font-size: 0.6rem;
+    }
+
+    #barraPesquisa{
+        padding: 4px;
+        font-size: 0.7rem;
+    }
+
+    .filtros{
+        margin-top: 25px;
+        gap: 10px;
+    }
+
+    .filtrobutton{
+        width: 65px;
+        padding: 1px;
+        font-size: 0.53rem;
+    }
+
+    .edicao, h2{
+        font-size: 0.7rem;
+        overflow: visible;
+    }
+
+    mat-paginator{
+        margin-top: 0px;
+    }
 }

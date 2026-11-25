@@ -1,85 +1,83 @@
-body{
-    overflow: auto !important;
-}
-
-.nav{
-    width: 100%;
-    height: 50px;
-    background-color: #721111;
-    padding-left: 20px;
-    display: flex;
-    align-items: center;
-}
-
-.btn-hamburger {
-  display: inline-block ;
-  padding: 0;
-  width: fit-content;
-  height: fit-content;
-  line-height: 1;
-}
-
-.perfil-position{
-   margin-left: auto;
-    padding-right: 20px;
-}
-
-.perfil-login{
-    border-radius: 100%;
-    width: 32px;
-    height: 30px;
-    background-color: #721111;
-    overflow: hidden;
-    border: 1px solid white;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    
-}
 
 
-#hamburguer{
-    margin: 0;
-}
+    .nav{
+        width: 100%;
+        height: 50px;
+        background-color: #721111;
+        padding-left: 20px;
+        display: flex;
+        align-items: center;
+    }
 
-img{
-    margin-top: 10px;
-    width: 27px;
-    height: 27px;
-}
+    .btn-hamburger {
+    display: inline-block ;
+    padding: 0;
+    width: fit-content;
+    height: fit-content;
+    line-height: 1;
+    }
 
-#offcanvasExample{
-    background-color: #721111;
-}
+    .perfil-position{
+    margin-left: auto;
+        padding-right: 20px;
+    }
 
-ul{
-    width: 100%;
-    
-    height: 50px;
-    padding: 7px;
-    transition: 0.5s;
+    .perfil-login{
+        border-radius: 100%;
+        width: 32px;
+        height: 30px;
+        background-color: #721111;
+        overflow: hidden;
+        border: 1px solid white;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        
+    }
 
-    display: flex;
-    align-items: center;
-}
 
-ul:hover{
-    background-color: #430a0a;
-}
+    #hamburguer{
+        margin: 0;
+    }
 
-.rotas{
-    font-size: 1rem;
-    color: white;
-    text-decoration: none;
-    font-family: 'Times New Roman', Times, serif;
-}
+    img{
+        margin-top: 10px;
+        width: 27px;
+        height: 27px;
+    }
 
-h1{
-    color: white;
-    font-size: 1.5rem;
-    margin-top: 9.1px;
-    margin-left: 1rem;
-    font-family: var(--font-montserrat);
-}
+    #offcanvasExample{
+        background-color: #721111;
+    }
+
+    ul{
+        width: 100%;
+        
+        height: 50px;
+        padding: 7px;
+        transition: 0.5s;
+
+        display: flex;
+        align-items: center;
+    }
+
+    ul:hover{
+        background-color: #430a0a;
+    }
+
+    .rotas{
+        font-size: 1rem;
+        color: white;
+        text-decoration: none;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    h1{
+        color: white;
+        font-size: 1.5rem;
+        margin-top: 9.1px;
+        margin-left: 1rem;
+        font-family: var(--font-montserrat);
+    }
