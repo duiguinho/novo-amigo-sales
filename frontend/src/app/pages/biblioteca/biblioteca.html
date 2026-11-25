@@ -1,7 +1,7 @@
 <main>
     <div class="backSuperior">
         <h1>BIBLIOTECA DA ESCOLA</h1>
-        <h3>Todos os livros da nossa biblioteca</h3>
+        <h3 id="h3">Todos os livros da nossa biblioteca</h3>
     </div>
 
     <div class="conteudo">
@@ -94,9 +94,9 @@
                 <h3>ISBN: {{ livroSelecionado.isbn }}</h3>
 
                 @if (livroSelecionado.disponibilidade) {
-                <span class="disponivel">Disponível</span>
+                <span class="disponivel-info">Disponível</span>
                 } @else {
-                <span class="indisponivel">Indisponível</span>
+                <span class="indisponivel-info">Indisponível</span>
                 }
 
             </div>

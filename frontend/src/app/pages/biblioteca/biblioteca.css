@@ -221,7 +221,7 @@ mat-paginator{
         font-size: 1.2rem;
     }
 
-    h3{
+    #h3{
         font-size: 0.7rem;
     }
 
@@ -255,12 +255,73 @@ mat-paginator{
         padding: 0px;
         padding-left: 2px;
         padding-right: 2px;
-        font-size: 0.305rem;
+        font-size: 0.4rem;
         border-radius: 10px;
     }
 
     mat-paginator{
         margin-top: 0px;
+    }
+
+    .offcanvas{
+        width: 50%;
+        padding: 15px;
+    }
+
+    .offcontainer{
+        padding: 10px;
+    }
+
+    .offcontainer{
+        height: auto;
+    }
+    
+
+    #livroInformacoesLabel{
+        font-size: 0.85rem;
+    }
+
+    p{
+        font-size: 0.6rem;
+        line-height: 1;
+    }
+
+    h3{
+        font-size: 0.6rem;
+    }
+
+    .disponivel-info{
+    width:min-content;
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 20px;
+    background-color: var(--second-correct-color);
+    color: var(--correct-color);
+    font-size: 0.80rem;
+    font-family: var(--font-league-spartan);
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+    .indisponivel-info{
+    width: min-content;
+    padding: 3px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 20px;
+    background-color: var(--second-wrong-color);
+    color: var(--wrong-color);
+    font-size: 0.80rem;
+    font-family: var(--font-league-spartan);
+    font-weight: bold;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
     }
 
 }

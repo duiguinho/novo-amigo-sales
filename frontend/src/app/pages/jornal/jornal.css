@@ -253,4 +253,33 @@ mat-paginator{
     mat-paginator{
         margin-top: 0px;
     }
+
+    .offcanvas{
+        width: 50%;
+        padding: 15px;
+    }
+
+    .offcontainer{
+        padding: 10px;
+    }
+
+    .offcontainer{
+        height: auto;
+    }
+
+    p{
+        font-size: 0.6rem;
+        line-height: 1;
+    }
+
+    h3{
+        font-size: 0.6rem;
+    }
+
+    .abrirPdf{
+        width: 110px;
+        font-size: 0.55rem;
+    }
+
+
 }
