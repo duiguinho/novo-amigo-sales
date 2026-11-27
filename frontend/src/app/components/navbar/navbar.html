@@ -33,9 +33,6 @@
       <a class="rotas" routerLink="/pg-inicial" (click)="fecharMenu()">
         <ul>PÁGINA INICIAL</ul>
       </a>
-      <a class="rotas" routerLink="/pg-jornal" (click)="fecharMenu()">
-        <ul>JORNAL</ul>
-      </a>
       <a class="rotas" routerLink="/pg-biblioteca" (click)="fecharMenu()">
         <ul>BIBLIOTECA</ul>
       </a>
@@ -65,7 +62,7 @@
         <ul>EDITAR PÁGINA INICIAL</ul>
       </a>
       }
-      @if (auth.temCargo(['bibliotecario', 'administrador'])) {
+      @if (auth.temCargo(['bibliotecario'])) {
       <a class="rotas" routerLink="/pg-dashboard" (click)="fecharMenu()">
         <ul>DASHBOARD</ul>
       </a>

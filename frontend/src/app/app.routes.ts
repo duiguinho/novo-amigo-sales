@@ -2,7 +2,6 @@
 import { Routes } from '@angular/router';
 
 import { PaginaInicial } from './pages/pagina-inicial/pagina-inicial';
-import { Jornal } from './pages/jornal/jornal';
 import { Biblioteca } from './pages/biblioteca/biblioteca';
 import { Sala } from './pages/sala/sala';
 import { EditarPgInicial } from './pages/editar-pg-inicial/editar-pg-inicial';
@@ -23,10 +22,6 @@ export const routes: Routes = [
     component: PaginaInicial
   },
   {
-    path: 'pg-jornal',
-    component: Jornal
-  },
-  {
     path: 'pg-biblioteca',
     component: Biblioteca
   },
@@ -39,7 +34,7 @@ export const routes: Routes = [
     component: Dashboard,
     canActivate: [cargoGuard],
     data: {
-      cargos: ['bibliotecario', 'administrador']
+      cargos: ['bibliotecario']
     }
   },
   {
