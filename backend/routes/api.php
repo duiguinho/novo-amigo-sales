@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Http\Request;
@@ -18,8 +19,11 @@ use App\Http\Controllers\EmprestimoController;
 use App\Http\Controllers\EdicaoController;
 use App\Http\Controllers\ComunicadoController;
 
-
-// Autenticação
+/*
+|--------------------------------------------------------------------------
+| Autenticação
+|--------------------------------------------------------------------------
+*/
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/cadastro', [AuthController::class, 'cadastrar']);
@@ -29,7 +33,11 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-// Rotas públicas
+/*
+|--------------------------------------------------------------------------
+| Rotas públicas
+|--------------------------------------------------------------------------
+*/
 
 // Livros
 Route::get('/livros', [LivroController::class, 'index']);
@@ -57,67 +65,140 @@ Route::get('/cardapios', [CardapioController::class, 'index']);
 Route::get('/cardapios/{id}', [CardapioController::class, 'show']);
 
 
-
-// Rotas que exigem autenticação
+/*
+|--------------------------------------------------------------------------
+| Rotas autenticadas
+|--------------------------------------------------------------------------
+*/
 
 Route::middleware('auth:sanctum')->group(function () {
 
     // Sessão
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    // Usuários
+
+    /*
+    |--------------------------------------------------------------------------
+    | Usuários
+    |--------------------------------------------------------------------------
+    */
+
     Route::get('/usuarios', [UsuarioController::class, 'index']);
     Route::post('/usuarios', [UsuarioController::class, 'store']);
     Route::get('/usuarios/{id}', [UsuarioController::class, 'show']);
     Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
     Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
 
-    // Livros
+    // Cadastro exclusivo de funcionários pelo administrador
+    Route::post(
+        '/admin/funcionarios',
+        [UsuarioController::class, 'criarFuncionario']
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Livros
+    |--------------------------------------------------------------------------
+    */
+
     Route::post('/livros', [LivroController::class, 'store']);
     Route::put('/livros/{id}', [LivroController::class, 'update']);
     Route::delete('/livros/{id}', [LivroController::class, 'destroy']);
 
-    // Gêneros
+
+    /*
+    |--------------------------------------------------------------------------
+    | Gêneros
+    |--------------------------------------------------------------------------
+    */
+
     Route::post('/generos', [GeneroController::class, 'store']);
     Route::put('/generos/{id}', [GeneroController::class, 'update']);
     Route::delete('/generos/{id}', [GeneroController::class, 'destroy']);
 
-    // Notícias
+
+    /*
+    |--------------------------------------------------------------------------
+    | Notícias
+    |--------------------------------------------------------------------------
+    */
+
     Route::post('/noticias', [NoticiaController::class, 'store']);
     Route::put('/noticias/{id}', [NoticiaController::class, 'update']);
     Route::delete('/noticias/{id}', [NoticiaController::class, 'destroy']);
 
-    // Edições do jornal
+
+    /*
+    |--------------------------------------------------------------------------
+    | Edições do jornal
+    |--------------------------------------------------------------------------
+    */
+
     Route::post('/edicoes', [EdicaoController::class, 'store']);
     Route::put('/edicoes/{id}', [EdicaoController::class, 'update']);
     Route::delete('/edicoes/{id}', [EdicaoController::class, 'destroy']);
 
-    // Avisos
+
+    /*
+    |--------------------------------------------------------------------------
+    | Avisos
+    |--------------------------------------------------------------------------
+    */
+
     Route::post('/avisos', [AvisoController::class, 'store']);
     Route::get('/avisos/{id}', [AvisoController::class, 'show']);
     Route::delete('/avisos/{id}', [AvisoController::class, 'destroy']);
 
-    // Cardápios
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cardápios
+    |--------------------------------------------------------------------------
+    */
+
     Route::post('/cardapios', [CardapioController::class, 'store']);
     Route::put('/cardapios/{id}', [CardapioController::class, 'update']);
     Route::delete('/cardapios/{id}', [CardapioController::class, 'destroy']);
 
-    // Salas e representantes
+
+    /*
+    |--------------------------------------------------------------------------
+    | Salas e representantes
+    |--------------------------------------------------------------------------
+    */
+
     Route::get('/salas', [SalaController::class, 'index']);
     Route::post('/salas', [SalaController::class, 'store']);
     Route::get('/salas/{id}', [SalaController::class, 'show']);
     Route::put('/salas/{id}', [SalaController::class, 'update']);
     Route::delete('/salas/{id}', [SalaController::class, 'destroy']);
-    Route::put('/salas/{id}/representante', [SalaController::class, 'definirRepresentante']);
 
-    // Cursos
+    Route::put(
+        '/salas/{id}/representante',
+        [SalaController::class, 'definirRepresentante']
+    );
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cursos
+    |--------------------------------------------------------------------------
+    */
+
     Route::get('/cursos', [CursoController::class, 'index']);
     Route::post('/cursos', [CursoController::class, 'store']);
     Route::get('/cursos/{id}', [CursoController::class, 'show']);
     Route::put('/cursos/{id}', [CursoController::class, 'update']);
     Route::delete('/cursos/{id}', [CursoController::class, 'destroy']);
 
-    // Horários das aulas
+
+    /*
+    |--------------------------------------------------------------------------
+    | Horários das aulas
+    |--------------------------------------------------------------------------
+    */
+
     Route::get('/horarios/sala/{salaId}', [HorarioAulaController::class, 'porSala']);
     Route::get('/horarios', [HorarioAulaController::class, 'index']);
     Route::post('/horarios/lote', [HorarioAulaController::class, 'storeLote']);
@@ -126,7 +207,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/horarios/{id}', [HorarioAulaController::class, 'update']);
     Route::delete('/horarios/{id}', [HorarioAulaController::class, 'destroy']);
 
-    // Atividades
+
+    /*
+    |--------------------------------------------------------------------------
+    | Atividades
+    |--------------------------------------------------------------------------
+    */
+
     Route::get('/atividades/sala/{salaId}', [AtividadeController::class, 'porSala']);
     Route::get('/atividades', [AtividadeController::class, 'index']);
     Route::post('/atividades', [AtividadeController::class, 'store']);
@@ -134,15 +221,35 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/atividades/{id}', [AtividadeController::class, 'update']);
     Route::delete('/atividades/{id}', [AtividadeController::class, 'destroy']);
 
-    // Comunicados da área do aluno
+
+    /*
+    |--------------------------------------------------------------------------
+    | Comunicados
+    |--------------------------------------------------------------------------
+    */
+
     Route::get('/comunicados', [ComunicadoController::class, 'index']);
     Route::post('/comunicados', [ComunicadoController::class, 'store']);
     Route::put('/comunicados/{id}', [ComunicadoController::class, 'update']);
     Route::delete('/comunicados/{id}', [ComunicadoController::class, 'destroy']);
 
-    // Empréstimos da biblioteca
+
+    /*
+    |--------------------------------------------------------------------------
+    | Empréstimos da biblioteca
+    |--------------------------------------------------------------------------
+    */
+
     Route::get('/emprestimos', [EmprestimoController::class, 'index']);
     Route::post('/emprestimos', [EmprestimoController::class, 'store']);
-    Route::patch('/emprestimos/{emprestimo}/devolver', [EmprestimoController::class, 'devolver']);
-    Route::get('/emprestimos-atrasados', [EmprestimoController::class, 'atrasados']);
+
+    Route::patch(
+        '/emprestimos/{emprestimo}/devolver',
+        [EmprestimoController::class, 'devolver']
+    );
+
+    Route::get(
+        '/emprestimos-atrasados',
+        [EmprestimoController::class, 'atrasados']
+    );
 });

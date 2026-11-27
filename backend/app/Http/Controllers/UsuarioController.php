@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Usuario;
@@ -9,75 +8,162 @@ use Illuminate\Support\Facades\Gate;
 
 class UsuarioController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Listar usuários
+    |--------------------------------------------------------------------------
+    */
+
     public function index()
     {
-        
         $usuarios = Usuario::all();
+
         return response()->json($usuarios);
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Criar usuário pela rota administrativa existente
+    |--------------------------------------------------------------------------
+    */
+
     public function store(Request $request)
-{
-    if (Gate::denies('gerenciar-usuario')) {
-        return response()->json(['erro' => 'Você não tem permissão para criar usuários'], 403);
+    {
+        if (Gate::denies('gerenciar-usuario')) {
+            return response()->json([
+                'erro' => 'Você não tem permissão para criar usuários.'
+            ], 403);
+        }
+
+        $dados = $request->validate([
+            'nome_completo' => 'required|string|max:255',
+            'nome_usuario' => 'required|string|max:255|unique:usuarios,nome_usuario',
+            'senha' => 'required|string|min:6',
+            'nivel_acesso' => 'required|in:aluno,administrador,bibliotecario',
+            'sala_id' => 'required_if:nivel_acesso,aluno|nullable|exists:salas,id',
+        ]);
+
+        $usuario = Usuario::create([
+            'nome_completo' => $dados['nome_completo'],
+            'nome_usuario' => $dados['nome_usuario'],
+            'senha' => Hash::make($dados['senha']),
+            'nivel_acesso' => $dados['nivel_acesso'],
+            'sala_id' => $dados['nivel_acesso'] === 'aluno'
+                ? ($dados['sala_id'] ?? null)
+                : null,
+        ]);
+
+        return response()->json($usuario, 201);
     }
 
-    $request->validate([
-        'nome_completo' => 'required|string',
-        'nome_usuario' => 'required|string|unique:usuarios,nome_usuario',
-        'senha' => 'required|string|min:6',
-        'nivel_acesso' => 'required|in:aluno,administrador,bibliotecario',
-        'sala_id' => 'required_if:nivel_acesso,aluno|nullable|exists:salas,id',
-    ]);
 
-    $usuario = Usuario::create([
-        'nome_completo' => $request->nome_completo,
-        'nome_usuario' => $request->nome_usuario,
-        'senha' => Hash::make($request->senha),
-        'nivel_acesso' => $request->nivel_acesso,
-        'sala_id' => $request->nivel_acesso === 'aluno' ? $request->sala_id : null,
-    ]);
+    /*
+    |--------------------------------------------------------------------------
+    | Criar funcionário
+    |--------------------------------------------------------------------------
+    | Apenas administrador pode cadastrar administrador ou bibliotecário.
+    | Não utiliza código de acesso público.
+    |--------------------------------------------------------------------------
+    */
 
-    return response()->json($usuario, 201);
-}
+    public function criarFuncionario(Request $request)
+    {
+        if (
+            !$request->user() ||
+            $request->user()->nivel_acesso !== 'administrador'
+        ) {
+            return response()->json([
+                'erro' => 'Apenas administradores podem cadastrar funcionários.'
+            ], 403);
+        }
+
+        $dados = $request->validate([
+            'nome_completo' => 'required|string|max:255',
+            'nome_usuario' => 'required|string|max:255|unique:usuarios,nome_usuario',
+            'senha' => 'required|string|min:6',
+            'nivel_acesso' => 'required|in:administrador,bibliotecario',
+        ]);
+
+        $funcionario = Usuario::create([
+            'nome_completo' => $dados['nome_completo'],
+            'nome_usuario' => $dados['nome_usuario'],
+            'senha' => Hash::make($dados['senha']),
+            'nivel_acesso' => $dados['nivel_acesso'],
+            'sala_id' => null,
+        ]);
+
+        return response()->json([
+            'mensagem' => 'Funcionário cadastrado com sucesso.',
+            'usuario' => $funcionario,
+        ], 201);
+    }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Mostrar usuário
+    |--------------------------------------------------------------------------
+    */
 
     public function show($id)
     {
-        // Continua liberado pra qualquer autenticado.
         $usuario = Usuario::findOrFail($id);
+
         return response()->json($usuario);
     }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Atualizar usuário
+    |--------------------------------------------------------------------------
+    */
 
     public function update(Request $request, $id)
     {
         $usuarioAlvo = Usuario::findOrFail($id);
 
-        // Aqui o Gate recebe o usuarioAlvo como segundo parâmetro,
-        // pra poder comparar se é administrador OU se é o próprio usuário editando.
         if (Gate::denies('editar-usuario', $usuarioAlvo)) {
-            return response()->json(['erro' => 'Você não tem permissão para editar esse usuário'], 403);
+            return response()->json([
+                'erro' => 'Você não tem permissão para editar esse usuário.'
+            ], 403);
         }
 
-        $request->validate([
-            'nome_usuario' => 'sometimes|string|unique:usuarios,nome_usuario,' . $usuarioAlvo->id,
+        $dados = $request->validate([
+            'nome_completo' => 'sometimes|string|max:255',
+            'nome_usuario' => 'sometimes|string|max:255|unique:usuarios,nome_usuario,' . $usuarioAlvo->id,
+            'senha' => 'sometimes|string|min:6',
+            'nivel_acesso' => 'sometimes|in:aluno,administrador,bibliotecario',
             'sala_id' => 'sometimes|nullable|exists:salas,id',
         ]);
 
-        $usuarioAlvo->nome_completo = $request->nome_completo ?? $usuarioAlvo->nome_completo;
-        $usuarioAlvo->nome_usuario = $request->nome_usuario ?? $usuarioAlvo->nome_usuario;
+        if (isset($dados['nome_completo'])) {
+            $usuarioAlvo->nome_completo = $dados['nome_completo'];
+        }
 
-        // Só administrador pode mudar o nivel_acesso de alguém (evita que um aluno
-        // se autopromova a administrador editando o próprio perfil).
-        if ($request->user()->nivel_acesso === 'administrador') {
-            $usuarioAlvo->nivel_acesso = $request->nivel_acesso ?? $usuarioAlvo->nivel_acesso;
-        } 
+        if (isset($dados['nome_usuario'])) {
+            $usuarioAlvo->nome_usuario = $dados['nome_usuario'];
+        }
 
-        if ($request->user()->nivel_acesso === 'aluno') {
-            $usuarioAlvo->sala_id = $request->sala_id ?? $usuarioAlvo->sala_id;
-        } 
+        // Somente administrador pode alterar o cargo.
+        if (
+            $request->user()->nivel_acesso === 'administrador' &&
+            isset($dados['nivel_acesso'])
+        ) {
+            $usuarioAlvo->nivel_acesso = $dados['nivel_acesso'];
+        }
 
-        if ($request->senha) {
-            $usuarioAlvo->senha = Hash::make($request->senha);
+        // Aluno pode atualizar sua própria sala, conforme a regra original.
+        if (
+            $request->user()->nivel_acesso === 'aluno' &&
+            array_key_exists('sala_id', $dados)
+        ) {
+            $usuarioAlvo->sala_id = $dados['sala_id'];
+        }
+
+        if (isset($dados['senha'])) {
+            $usuarioAlvo->senha = Hash::make($dados['senha']);
         }
 
         $usuarioAlvo->save();
@@ -85,15 +171,27 @@ class UsuarioController extends Controller
         return response()->json($usuarioAlvo);
     }
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Excluir usuário
+    |--------------------------------------------------------------------------
+    */
+
     public function destroy($id)
     {
         if (Gate::denies('deletar-usuario')) {
-            return response()->json(['erro' => 'Você não tem permissão para deletar usuários'], 403);
+            return response()->json([
+                'erro' => 'Você não tem permissão para deletar usuários.'
+            ], 403);
         }
 
         $usuario = Usuario::findOrFail($id);
+
         $usuario->delete();
 
-        return response()->json(['mensagem' => 'Removido com sucesso'], 200);
+        return response()->json([
+            'mensagem' => 'Removido com sucesso.'
+        ], 200);
     }
 }
