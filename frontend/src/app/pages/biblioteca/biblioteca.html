@@ -12,10 +12,26 @@
         </div>
 
         <div class="filtros">
-            <button class="filtrobutton" type="button">Tudo</button>
-            <button class="filtrobutton" type="button" > Disponível</button>
-            <button class="filtrobutton" type="button" >Indisponível</button>
-        </div>
+    <button
+        class="filtrobutton"
+        type="button"
+        [class.filtro-ativo]="filtroDisponibilidade === 'todos'"
+        (click)="filtrarDisponibilidade('todos')">
+        Tudo
+    </button>
+
+    <button
+        class="filtrobutton" type="button" [class.filtro-ativo]="filtroDisponibilidade === 'disponivel'" (click)="filtrarDisponibilidade('disponivel')">Disponível
+    </button>
+
+    <button
+        class="filtrobutton"
+        type="button"
+        [class.filtro-ativo]="filtroDisponibilidade === 'indisponivel'"
+        (click)="filtrarDisponibilidade('indisponivel')">
+        Indisponível
+    </button>
+</div>
 
         @if (carregando) {
         <p>Carregando livros...</p>

@@ -198,6 +198,28 @@ mat-paginator{
     width: 100%;
 }
 
+/* Botão selecionado */
+.filtrobutton.filtro-ativo {
+    background-color: #721111;
+    color: white;
+    border-color: #721111;
+}
+
+/* Hover do botão selecionado */
+.filtrobutton.filtro-ativo:hover {
+    background-color: #430a0a;
+    border-color: #430a0a;
+    transform: scale(1.03);
+    transition: 0.2s;
+}
+
+/* Hover dos botões não selecionados */
+.filtrobutton:not(.filtro-ativo):hover {
+    background-color: #f0e4df;
+    color: #721111;
+    transition: 0.2s;
+}
+
 @media screen and (max-width:380px){
     main{
         padding-left: 0px;

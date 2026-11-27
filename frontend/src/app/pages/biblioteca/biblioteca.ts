@@ -4,6 +4,8 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { LivrosService } from '../../service/livros';
 
+type FiltroDisponibilidade = 'todos' | 'disponivel' | 'indisponivel';
+
 @Component({
   selector: 'app-biblioteca',
   standalone: true,
@@ -19,6 +21,8 @@ export class Biblioteca implements OnInit {
   livrosFiltrados: any[] = [];
 
   busca: string = '';
+  filtroDisponibilidade: FiltroDisponibilidade = 'todos';
+
   livroSelecionado: any = null;
 
   carregando: boolean = true;
@@ -43,17 +47,12 @@ export class Biblioteca implements OnInit {
         console.log('Livros recebidos do Laravel:', dados);
 
         this.livros = dados;
-        this.livrosFiltrados = dados;
-        this.livrosVisiveis = dados.slice(0, 5);
+        this.aplicarFiltros();
 
-        // Finaliza o carregamento
         this.carregando = false;
-
-        // Atualiza a tela
         this.cdr.detectChanges();
 
         console.log('Livros visíveis:', this.livrosVisiveis);
-        console.log('Carregando:', this.carregando);
       },
 
       error: (erro) => {
@@ -68,14 +67,18 @@ export class Biblioteca implements OnInit {
     });
   }
 
-  mudarPagina(event: PageEvent): void {
-    const inicio = event.pageIndex * event.pageSize;
-    const fim = inicio + event.pageSize;
-
-    this.livrosVisiveis = this.livrosFiltrados.slice(inicio, fim);
+  filtrarDisponibilidade(
+    filtro: FiltroDisponibilidade
+  ): void {
+    this.filtroDisponibilidade = filtro;
+    this.aplicarFiltros();
   }
 
   buscarLivro(): void {
+    this.aplicarFiltros();
+  }
+
+  private aplicarFiltros(): void {
     const termo = this.busca.toLocaleLowerCase().trim();
 
     this.livrosFiltrados = this.livros.filter((livro) => {
@@ -86,15 +89,36 @@ export class Biblioteca implements OnInit {
         ? livro.autores.join(' ').toLocaleLowerCase()
         : String(livro.autores ?? '').toLocaleLowerCase();
 
-      return (
+      const correspondeBusca =
         titulo.includes(termo) ||
         autores.includes(termo) ||
-        isbn.includes(termo)
-      );
+        isbn.includes(termo);
+
+      const disponivel =
+        livro.disponibilidade === true ||
+        livro.disponibilidade === 1 ||
+        livro.disponibilidade === '1';
+
+      let correspondeDisponibilidade = true;
+
+      if (this.filtroDisponibilidade === 'disponivel') {
+        correspondeDisponibilidade = disponivel;
+      } else if (this.filtroDisponibilidade === 'indisponivel') {
+        correspondeDisponibilidade = !disponivel;
+      }
+
+      return correspondeBusca && correspondeDisponibilidade;
     });
 
-    // Ao pesquisar, volta para a primeira página
+    // Volta para a primeira página após aplicar filtros
     this.livrosVisiveis = this.livrosFiltrados.slice(0, 5);
+  }
+
+  mudarPagina(event: PageEvent): void {
+    const inicio = event.pageIndex * event.pageSize;
+    const fim = inicio + event.pageSize;
+
+    this.livrosVisiveis = this.livrosFiltrados.slice(inicio, fim);
   }
 
   selecionarLivro(livro: any): void {
