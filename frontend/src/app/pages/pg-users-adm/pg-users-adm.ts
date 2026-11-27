@@ -59,6 +59,8 @@ export class PgUsersAdm implements OnInit {
   mensagem = '';
 
   usuarioAtualizando: number | null = null;
+  usuarioExcluindo: number | null = null;
+
   salvandoTurma = false;
   salvandoCurso = false;
   salvandoFuncionario = false;
@@ -324,6 +326,43 @@ export class PgUsersAdm implements OnInit {
     });
   }
 
+  excluirUsuario(usuario: Usuario): void {
+    const confirmar = confirm(
+      `Tem certeza de que deseja excluir o usuário "${usuario.nome_usuario}"?\n\nEssa ação não poderá ser desfeita.`
+    );
+
+    if (!confirmar) return;
+
+    const headers = this.getHeaders();
+
+    if (!headers) return;
+
+    this.usuarioExcluindo = usuario.id;
+    this.erro = '';
+    this.mensagem = '';
+
+    this.http.delete(
+      `${this.api}/usuarios/${usuario.id}`,
+      { headers }
+    ).subscribe({
+      next: () => {
+        this.usuarios = this.usuarios.filter(
+          item => item.id !== usuario.id
+        );
+
+        this.usuarioExcluindo = null;
+        this.mensagem =
+          `Usuário "${usuario.nome_usuario}" excluído com sucesso.`;
+
+        this.cdr.markForCheck();
+      },
+      error: erro => {
+        this.usuarioExcluindo = null;
+        this.tratarErro(erro, 'excluir o usuário');
+      }
+    });
+  }
+
   nomeCargo(cargo: string): string {
     const nomes: Record<string, string> = {
       aluno: 'Aluno',
@@ -411,7 +450,6 @@ export class PgUsersAdm implements OnInit {
     ).subscribe({
       next: () => {
         this.salvandoFuncionario = false;
-
         this.mensagem = 'Funcionário cadastrado com sucesso!';
 
         this.funcionarioForm = {
