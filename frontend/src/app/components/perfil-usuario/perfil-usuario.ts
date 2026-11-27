@@ -1,8 +1,8 @@
+
 import { Component, inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AuthService } from '../../service/auth';
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -19,15 +19,20 @@ export class PerfilUsuario {
   usuario = this.authService.obterUsuario();
 
   sair(): void {
-  this.authService.logout().subscribe({
-    next: () => {
-      this.authService.limparSessao();
-      this.router.navigate(['/pg-inicial']);
-    },
-    error: () => {
-      this.authService.limparSessao();
-      this.router.navigate(['/pg-inicial']);
-    }
-  });
-}
+    this.authService.logout().subscribe({
+      next: () => {
+        this.finalizarLogout();
+      },
+      error: () => {
+        this.finalizarLogout();
+      }
+    });
+  }
+
+  private finalizarLogout(): void {
+    this.authService.limparSessao();
+
+    this.dialogRef.close();
+    this.router.navigate(['/pg-inicial']);
+  }
 }
