@@ -8,11 +8,7 @@ use Illuminate\Support\Facades\Gate;
 
 class UsuarioController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Listar usuários
-    |--------------------------------------------------------------------------
-    */
+    
 
     public function index()
     {
@@ -22,11 +18,7 @@ class UsuarioController extends Controller
     }
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | Criar usuário pela rota administrativa existente
-    |--------------------------------------------------------------------------
-    */
+    
 
     public function store(Request $request)
     {
@@ -67,37 +59,107 @@ class UsuarioController extends Controller
     |--------------------------------------------------------------------------
     */
 
-    public function criarFuncionario(Request $request)
-    {
-        if (
-            !$request->user() ||
-            $request->user()->nivel_acesso !== 'administrador'
-        ) {
-            return response()->json([
-                'erro' => 'Apenas administradores podem cadastrar funcionários.'
-            ], 403);
-        }
-
-        $dados = $request->validate([
-            'nome_completo' => 'required|string|max:255',
-            'nome_usuario' => 'required|string|max:255|unique:usuarios,nome_usuario',
-            'senha' => 'required|string|min:6',
-            'nivel_acesso' => 'required|in:administrador,bibliotecario',
-        ]);
-
-        $funcionario = Usuario::create([
-            'nome_completo' => $dados['nome_completo'],
-            'nome_usuario' => $dados['nome_usuario'],
-            'senha' => Hash::make($dados['senha']),
-            'nivel_acesso' => $dados['nivel_acesso'],
-            'sala_id' => null,
-        ]);
-
+    
+public function criarFuncionario(Request $request)
+{
+    if (
+        !$request->user() ||
+        $request->user()->nivel_acesso !== 'administrador'
+    ) {
         return response()->json([
-            'mensagem' => 'Funcionário cadastrado com sucesso.',
-            'usuario' => $funcionario,
-        ], 201);
+            'erro' => 'Apenas administradores podem cadastrar funcionários.'
+        ], 403);
     }
+
+    $dados = $request->validate([
+        'nome_completo' => 'required|string|max:255',
+        'nome_usuario' => 'required|string|max:255|unique:usuarios,nome_usuario',
+        'senha' => 'required|string|min:6',
+        'nivel_acesso' => 'required|in:administrador,bibliotecario',
+    ]);
+
+    $funcionario = Usuario::create([
+        'nome_completo' => $dados['nome_completo'],
+        'nome_usuario' => $dados['nome_usuario'],
+        'senha' => Hash::make($dados['senha']),
+        'nivel_acesso' => $dados['nivel_acesso'],
+        'sala_id' => null,
+    ]);
+
+    return response()->json([
+        'mensagem' => 'Funcionário cadastrado com sucesso.',
+        'funcionario' => $funcionario
+    ], 201);
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Listar funcionários
+|--------------------------------------------------------------------------
+*/
+
+public function listarFuncionarios(Request $request)
+{
+    if (
+        !$request->user() ||
+        $request->user()->nivel_acesso !== 'administrador'
+    ) {
+        return response()->json([
+            'erro' => 'Apenas administradores podem visualizar funcionários.'
+        ], 403);
+    }
+
+    $funcionarios = Usuario::whereIn('nivel_acesso', [
+        'administrador',
+        'bibliotecario'
+    ])->get();
+
+    return response()->json($funcionarios);
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Redefinir senha de funcionário
+|--------------------------------------------------------------------------
+*/
+
+public function redefinirSenhaFuncionario(Request $request, $id)
+{
+    if (
+        !$request->user() ||
+        $request->user()->nivel_acesso !== 'administrador'
+    ) {
+        return response()->json([
+            'erro' => 'Apenas administradores podem alterar senhas.'
+        ], 403);
+    }
+
+    $funcionario = Usuario::findOrFail($id);
+
+    if (!in_array($funcionario->nivel_acesso, [
+        'administrador',
+        'bibliotecario'
+    ])) {
+        return response()->json([
+            'erro' => 'Este usuário não é um funcionário.'
+        ], 422);
+    }
+
+    $dados = $request->validate([
+        'senha' => 'required|string|min:6',
+    ]);
+
+    $funcionario->senha = Hash::make($dados['senha']);
+    $funcionario->save();
+
+    return response()->json([
+        'mensagem' => 'Senha do funcionário atualizada com sucesso.'
+    ]);
+}
+
 
 
     /*

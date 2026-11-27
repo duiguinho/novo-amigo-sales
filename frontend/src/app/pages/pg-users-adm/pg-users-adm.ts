@@ -9,6 +9,7 @@ import { Usuario } from '../../models/usuario';
 type SecaoAdmin =
   | 'inicio'
   | 'usuarios'
+  | 'funcionarios'
   | 'cursos'
   | 'turmas'
   | 'representantes';
@@ -44,10 +45,12 @@ export class PgUsersAdm implements OnInit {
   secaoAtual: SecaoAdmin = 'inicio';
 
   usuarios: Usuario[] = [];
+  funcionarios: Usuario[] = [];
   turmas: Turma[] = [];
   cursos: Curso[] = [];
 
   busca = '';
+  buscaFuncionario = '';
   buscaTurma = '';
   buscaCurso = '';
 
@@ -58,9 +61,14 @@ export class PgUsersAdm implements OnInit {
   usuarioAtualizando: number | null = null;
   salvandoTurma = false;
   salvandoCurso = false;
+  salvandoFuncionario = false;
+  salvandoNovaSenha = false;
 
   editandoTurmaId: number | null = null;
   editandoCursoId: number | null = null;
+
+  funcionarioSenhaId: number | null = null;
+  novaSenhaFuncionario = '';
 
   private requisicoesPendentes = 0;
 
@@ -71,6 +79,13 @@ export class PgUsersAdm implements OnInit {
 
   cursoForm = {
     nome: ''
+  };
+
+  funcionarioForm = {
+    nome_completo: '',
+    nome_usuario: '',
+    senha: '',
+    nivel_acesso: 'bibliotecario' as 'administrador' | 'bibliotecario'
   };
 
   readonly secoes: {
@@ -89,6 +104,12 @@ export class PgUsersAdm implements OnInit {
       id: 'usuarios',
       titulo: 'Usuários',
       descricao: 'Contas e permissões',
+      icone: '♙'
+    },
+    {
+      id: 'funcionarios',
+      titulo: 'Funcionários',
+      descricao: 'Cadastrar administradores e bibliotecários',
       icone: '♙'
     },
     {
@@ -313,6 +334,149 @@ export class PgUsersAdm implements OnInit {
     return nomes[cargo] ?? cargo;
   }
 
+  // FUNCIONÁRIOS
+
+  get funcionariosFiltrados(): Usuario[] {
+    const termo = this.buscaFuncionario.trim().toLowerCase();
+
+    if (!termo) return this.funcionarios;
+
+    return this.funcionarios.filter(funcionario =>
+      [
+        funcionario.nome_completo,
+        funcionario.nome_usuario,
+        funcionario.nivel_acesso
+      ].some(valor =>
+        String(valor ?? '').toLowerCase().includes(termo)
+      )
+    );
+  }
+
+  carregarFuncionarios(): void {
+    const headers = this.getHeaders();
+
+    if (!headers) return;
+
+    this.iniciarCarregamento();
+    this.erro = '';
+
+    this.http.get<Usuario[]>(
+      `${this.api}/admin/funcionarios`,
+      { headers }
+    ).subscribe({
+      next: funcionarios => {
+        this.funcionarios = funcionarios;
+        this.finalizarCarregamento();
+      },
+      error: erro => {
+        this.finalizarCarregamento();
+        this.tratarErro(erro, 'carregar os funcionários');
+      }
+    });
+  }
+
+  salvarFuncionario(): void {
+    const headers = this.getHeaders();
+
+    if (!headers) return;
+
+    const nome = this.funcionarioForm.nome_completo.trim();
+    const usuario = this.funcionarioForm.nome_usuario.trim();
+
+    if (!nome || !usuario || !this.funcionarioForm.senha) {
+      this.erro = 'Preencha todos os campos do funcionário.';
+      return;
+    }
+
+    if (this.funcionarioForm.senha.length < 6) {
+      this.erro = 'A senha precisa ter pelo menos 6 caracteres.';
+      return;
+    }
+
+    this.salvandoFuncionario = true;
+    this.erro = '';
+    this.mensagem = '';
+
+    const dados = {
+      nome_completo: nome,
+      nome_usuario: usuario,
+      senha: this.funcionarioForm.senha,
+      nivel_acesso: this.funcionarioForm.nivel_acesso
+    };
+
+    this.http.post(
+      `${this.api}/admin/funcionarios`,
+      dados,
+      { headers }
+    ).subscribe({
+      next: () => {
+        this.salvandoFuncionario = false;
+
+        this.mensagem = 'Funcionário cadastrado com sucesso!';
+
+        this.funcionarioForm = {
+          nome_completo: '',
+          nome_usuario: '',
+          senha: '',
+          nivel_acesso: 'bibliotecario'
+        };
+
+        this.carregarFuncionarios();
+        this.cdr.markForCheck();
+      },
+      error: erro => {
+        this.salvandoFuncionario = false;
+        this.tratarErro(erro, 'cadastrar o funcionário');
+      }
+    });
+  }
+
+  abrirAlteracaoSenha(funcionario: Usuario): void {
+    this.funcionarioSenhaId = funcionario.id;
+    this.novaSenhaFuncionario = '';
+    this.erro = '';
+    this.mensagem = '';
+  }
+
+  cancelarAlteracaoSenha(): void {
+    this.funcionarioSenhaId = null;
+    this.novaSenhaFuncionario = '';
+  }
+
+  redefinirSenhaFuncionario(funcionario: Usuario): void {
+    const headers = this.getHeaders();
+
+    if (!headers) return;
+
+    if (this.novaSenhaFuncionario.length < 6) {
+      this.erro = 'A nova senha precisa ter pelo menos 6 caracteres.';
+      return;
+    }
+
+    this.salvandoNovaSenha = true;
+    this.erro = '';
+    this.mensagem = '';
+
+    this.http.put(
+      `${this.api}/admin/funcionarios/${funcionario.id}/senha`,
+      { senha: this.novaSenhaFuncionario },
+      { headers }
+    ).subscribe({
+      next: () => {
+        this.salvandoNovaSenha = false;
+        this.mensagem =
+          `Senha de ${funcionario.nome_usuario} redefinida com sucesso.`;
+
+        this.cancelarAlteracaoSenha();
+        this.cdr.markForCheck();
+      },
+      error: erro => {
+        this.salvandoNovaSenha = false;
+        this.tratarErro(erro, 'redefinir a senha');
+      }
+    });
+  }
+
   // NAVEGAÇÃO
 
   abrirSecao(secao: SecaoAdmin): void {
@@ -327,6 +491,10 @@ export class PgUsersAdm implements OnInit {
 
       case 'usuarios':
         this.carregarUsuarios();
+        break;
+
+      case 'funcionarios':
+        this.carregarFuncionarios();
         break;
 
       case 'cursos':

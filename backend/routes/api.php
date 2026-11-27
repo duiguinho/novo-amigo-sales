@@ -89,19 +89,24 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
     Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
 
-    // Cadastro exclusivo de funcionários pelo administrador
+    // Gerenciamento de funcionários
+    Route::get(
+        '/admin/funcionarios',
+        [UsuarioController::class, 'listarFuncionarios']
+    );
+
     Route::post(
         '/admin/funcionarios',
         [UsuarioController::class, 'criarFuncionario']
     );
 
+    Route::put(
+        '/admin/funcionarios/{id}/senha',
+        [UsuarioController::class, 'redefinirSenhaFuncionario']
+    );
 
-    /*
-    |--------------------------------------------------------------------------
-    | Livros
-    |--------------------------------------------------------------------------
-    */
 
+    /*Livros*/
     Route::post('/livros', [LivroController::class, 'store']);
     Route::put('/livros/{id}', [LivroController::class, 'update']);
     Route::delete('/livros/{id}', [LivroController::class, 'destroy']);
